@@ -1,15 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={styles.icon1}></View>
-      <View style={styles.icon2}></View>
-      
-      
+      <TouchableHighlight onPress={() => {
+        alert('Pressed button')
+      }}>
+        <View style={styles.icon1}></View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => {
+        alert('Pressed button')
+      }}>
+        <View style={styles.icon2}></View>
+      </TouchableHighlight>
     </View>
   );
 }
@@ -21,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-evenly'
   },
   icon1: {
     borderStyle: 'solid',
