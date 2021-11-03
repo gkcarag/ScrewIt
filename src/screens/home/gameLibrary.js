@@ -1,6 +1,6 @@
-import { SafeAreaView } from "react-native";
-import { Text } from "react-native-paper";
-import React from "react";
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 //gonna need props for navigation to other pages
 const gameLibrary = (props) => {
