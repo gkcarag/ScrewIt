@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 //gonna need props for navigation to other pages
-const testPage = (props) => {
+const betaNavigation = (props) => {
     return(
         <View style={styles.container}>
         <StatusBar style="auto" />
@@ -75,4 +75,4 @@ const testPage = (props) => {
     }
 });
 
-export default registerRootComponent(testPage);
+export default registerRootComponent(betaNavigation);
