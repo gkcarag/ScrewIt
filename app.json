@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint": "./src/screens/home/testPage.js",
     "name": "ScrewIt",
     "slug": "ScrewIt",
     "version": "1.0.0",
