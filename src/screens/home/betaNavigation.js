@@ -1,5 +1,4 @@
 import React from 'react';
-import { registerRootComponent } from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
@@ -8,11 +7,19 @@ const betaNavigation = (props) => {
     return(
         <View style={styles.container}>
         <StatusBar style="auto" />
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon1}></View>
+        <TouchableHighlight onPress={() => props.navigation.navigate("library")}>
+          <View style={styles.icon1}>
+            <Text>
+              gameLibrary
+            </Text>
+          </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon2}></View>
+        <TouchableHighlight onPress={() => props.navigation.navigate("profile")}>
+          <View style={styles.icon2}>
+            <Text>
+            profile
+            </Text>
+          </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => { alert('Pressed button')}}>
           <View style={styles.icon2}></View>
@@ -75,4 +82,4 @@ const betaNavigation = (props) => {
     }
 });
 
-export default registerRootComponent(betaNavigation);
+export default betaNavigation;

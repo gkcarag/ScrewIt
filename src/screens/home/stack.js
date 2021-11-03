@@ -1,17 +1,22 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import * as React from 'react';
 import betaNavigation from './betaNavigation';
 import gameLibrary from './gameLibrary';
+import profile from './profile';
 
 const Stack = createStackNavigator();
 
 function stack() {
     return ( 
-        <Stack.Navigator initialRouteName="library">
-            <Stack.Screen name="library" component={gameLibrary} options={{ headerShown: false }} />
-            <Stack.Screen name="betaNavigation" component={betaNavigation} options={{ headerShown: false}}/>
-            
-        </Stack.Navigator>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="betaNavigation">
+                <Stack.Screen name="library" component={gameLibrary} options={{ headerShown: false }} />
+                <Stack.Screen name="betaNavigation" component={betaNavigation} options={{ headerShown: false}}/>
+                <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
+
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 
