@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import styles from '../styles.js';
+import { Text, View, TouchableHighlight } from 'react-native';
 
 //gonna need props for navigation to other pages
 const betaNavigation = (props) => {
@@ -36,7 +37,7 @@ const betaNavigation = (props) => {
     );
   }
   
-  const styles = StyleSheet.create({
+/*  const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexWrap: 'wrap',
@@ -81,6 +82,6 @@ const betaNavigation = (props) => {
     opacity: {
       height: 150
     }
-});
+}); */
 
 export default betaNavigation;
