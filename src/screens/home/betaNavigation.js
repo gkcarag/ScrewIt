@@ -28,7 +28,8 @@ const betaNavigation = (props) => {
           <View style={styles.icon1}></View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon1}></View>
+          <View style={styles.icon1}>
+          </View>
         </TouchableHighlight>
         
       </View>
