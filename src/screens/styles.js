@@ -45,5 +45,39 @@ export default StyleSheet.create({
     },
     opacity: {
       height: 150
+    },
+
+    loginScreen: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    loginContainer: {
+      backgroundColor: "#A7C7E7",
+      //flex: 1,
+      justifyContent: 'center',
+      width: "60%",
+      height: "30%",
+      borderWidth: 1,
+      borderRadius: 20,
+    },
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#DDDDDD',
+      padding: 10,
+      borderStyle: 'solid',
+      borderWidth: 1,
+      margin: 10,
+      borderRadius: 5,
+    },
+    buttonText: {
+      fontSize: 50,
+    },
+    clickText: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 5,
+      color: 'blue'
     }
 });

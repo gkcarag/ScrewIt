@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 function stack() {
     return ( 
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="betaNavigation">
+            <Stack.Navigator initialRouteName="loginSelection">
                 <Stack.Screen name="library" component={gameLibrary} options={{ headerShown: false }} />
                 <Stack.Screen name="betaNavigation" component={betaNavigation} options={{ headerShown: false}}/>
                 <Stack.Screen name="forgotPassword" component={forgotPassword} options={{ headerShown: false}} />
