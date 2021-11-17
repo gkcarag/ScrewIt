@@ -31,7 +31,7 @@ const loginSelection = (props) => {
                 <TouchableOpacity
                     style={styles.clickText}
                     title="signup"
-                //onPress{() => }
+                    onPress={() => props.navigation.navigate("signup")}
                 >
                     <Text>
                         Sign up
@@ -40,7 +40,7 @@ const loginSelection = (props) => {
                 <TouchableOpacity
                     style={styles.clickText}
                     title="forgotpassword"
-                //onPress{() => }
+                    onPress={() => props.navigation.navigate("forgotPassword")}
                 >
                     <Text>
                         Forgot password?
