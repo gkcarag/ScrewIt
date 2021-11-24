@@ -18,12 +18,16 @@ const betaNavigation = (props) => {
         <TouchableHighlight onPress={() => props.navigation.navigate("profile")}>
           <View style={styles.icon2}>
             <Text>
-            profile
+              profile
             </Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon2}></View>
+        <TouchableHighlight onPress={() => props.navigation.navigate("test1")}>
+          <View style={styles.icon1}>
+            <Text>
+              test1
+            </Text>
+          </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => { alert('Pressed button')}}>
           <View style={styles.icon1}></View>

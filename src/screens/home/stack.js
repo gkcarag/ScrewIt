@@ -11,6 +11,7 @@ import signup from '../auth/signup';
 import lobby from './lobby';
 import options from './options';
 import profile from './profile';
+import test1 from './test1';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +29,7 @@ function stack() {
                 <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />
                 <Stack.Screen name="options" component={options} options={{ headerShown: false}} />
                 <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
-
+                <Stack.Screen name="test1" component={test1} options={{ headerShown: false}} />
             </Stack.Navigator>
         </NavigationContainer>
     );

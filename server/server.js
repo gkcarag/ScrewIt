@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 const mysql = require('mysql');
-
+/*
 const connection = mysql.createConnection({
     host:'localhost', //will need to change this to phone device
     user:'root',
@@ -27,19 +27,26 @@ connection.connect(function(err){
 
     console.log('connected as id ' + connection.threadId);
 });
-
+*/
 // need to test the below commands, sql statements not properly coded yet
-app.get('/users', function(req,res){
+app.get('/', (req,res) => {
+    /*
     connection.query('select * from users', function(error,rows,fields){
         if(error) console.log(error);
 
         else{
             console.log(rows);
-            res.send(rows);
+            res.sendStatus(rows);
         }
     })
+    */
+   res.send("server connection test succesful");
 });
 
+app.listen(3000, () => {
+    console.log('Server is running on Port 3000');
+});
+/*
 app.post('/users', function(req,res){
     connection.query('insert into', function(error,rows,fields){
         if(errror) console.log(error);
@@ -71,4 +78,5 @@ app.delete('/users', function(req,res){
             res.send(rows);
         }
     })
-})
+});
+*/
