@@ -6,41 +6,22 @@ const express = require('express');
 const app = express();
 
 const mysql = require('mysql');
-/*
-const connection = mysql.createConnection({
-    host:'localhost', //will need to change this to phone device
-    user:'root',
-    password:'',
-    database:'testdb'
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'pass',
+    database: 'testdb',
 });
-
-const server = app.listen(4545,function(){
-    const host = server.address().address
-    const port = server.address().port
-})
-
-connection.connect(function(err){
-    if(err){
-        console.error('error connecting: ' + err.stack);
-        return;
-    }
-
-    console.log('connected as id ' + connection.threadId);
-});
-*/
 // need to test the below commands, sql statements not properly coded yet
-app.get('/', (req,res) => {
-    /*
-    connection.query('select * from users', function(error,rows,fields){
-        if(error) console.log(error);
+db.connect()
 
-        else{
-            console.log(rows);
-            res.sendStatus(rows);
-        }
-    })
-    */
-   res.send("server connection test succesful");
+//FINALLY WORKS - had to alter authentication method and flush privileges
+app.get('/', (req,res) => {
+   //res.send("get request (server using port 3000)");
+    const sqlInsert = "INSERT INTO users (username, password) VALUES ('brucewayne','bats1');";
+    db.query(sqlInsert, (err, result)=> {
+    res.send("get request");
+    });
 });
 
 app.listen(3000, () => {
