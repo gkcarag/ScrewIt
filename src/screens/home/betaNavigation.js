@@ -21,7 +21,7 @@ const betaNavigation = (props) => {
             </Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => props.navigation.navigate("chat")}>
+        <TouchableHighlight onPress={() => props.navigation.navigate("connection")}>
           <View style={styles.icon2}>
             <Text>
               CHAT DEMO
