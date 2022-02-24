@@ -11,7 +11,7 @@ const pgp = require('pg-promise');
 app.use(express.json()); //*this might be for react.js only
 
 // **heroku database credentials change periodically! if it doesnt work, info must be updated
-const db = pgp('postgres://dtoekcczdxsjkj:613f03ee2ac681787292bb0f7af114773d4e752208a9f0ff08f1b9aa85d6d17b@ec2-35-175-68-90.compute-1.amazonaws.com:5432/dd5duimpcrr5l') //update this to herkou credentials
+const db = pgp('') //update this to herkou credentials
 db.connect() 
 
 //FINALLY WORKS - had to alter authentication method and flush privileges
