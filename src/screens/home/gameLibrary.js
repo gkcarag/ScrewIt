@@ -7,8 +7,12 @@ const gameLibrary = (props) => {
     return(
         <View style={styles.container}>
         <StatusBar style="auto" />
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon1}></View>
+        <TouchableHighlight onPress={() => props.navigation.navigate("rapbattle")}>
+          <View style={styles.icon1}>
+            <Text>
+              Rap Battle
+            </Text>
+          </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => { alert('Pressed button')}}>
           <View style={styles.icon2}></View>

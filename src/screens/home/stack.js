@@ -6,6 +6,8 @@ import gameLibrary from './gameLibrary';
 import profile from './profile';
 import chat from './chat';
 import connection from '../../../connection';
+import rapUtil from '../games/RapBattle/rapbattle';
+import rapbattle from '../games/RapBattle/rapbattle';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +20,8 @@ function stack() {
                 <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
                 <Stack.Screen name="chat" component={chat} options={{ headerShown: false}} />
                 <Stack.Screen name="connection" component={connection} options={{ headerShown: false}} />
+                <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
+
 
             </Stack.Navigator>
         </NavigationContainer>

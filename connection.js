@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TextInput, StyleSheet, Text, View } from "react-native";
 // Client Things
-import io from "socket.io-client";
+const io = require("socket.io-client");
 export default class connection extends Component{
 
     constructor(props){
@@ -39,7 +39,6 @@ export default class connection extends Component{
                     this.setState({ chatMessage });
                 }}
               />
-              {chatMessages}
               {chatMessages}
           </View>
       );
