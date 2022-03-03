@@ -6,9 +6,6 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Navigator from './src/screens/home/stack';
 
 export default class App extends Component{
-  constructor(){
-    super();
-  }
   render(){
     return(
       <Navigator/>
