@@ -13,20 +13,24 @@
     "expo": "~43.0.0",
     "expo-status-bar": "~1.1.0",
     "express": "^4.17.1",
+    "install": "^0.13.0",
     "mysql": "^2.18.1",
+    "npm": "^8.5.3",
     "pg-promise": "^10.11.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-hook-form": "^7.19.5",
+    "react-hook-form": "^7.27.1",
     "react-native": "0.64.3",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-paper": "^4.10.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-tailwindcss": "^1.1.11",
     "react-native-track-player": "^2.1.2",
     "react-native-web": "0.17.1",
     "socket.io": "^4.4.1",
-    "socket.io-client": "^4.4.0"
+    "socket.io-client": "^4.4.0",
+    "tailwind-react-native-classnames": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

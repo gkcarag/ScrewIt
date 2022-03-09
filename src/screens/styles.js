@@ -20,10 +20,13 @@ export default StyleSheet.create({
       width: 150,
       height: 150,
       backgroundColor: "lightblue",
+      borderRadius:20,
+      /*
       borderBottomLeftRadius:20,
       borderBottomRightRadius:20,
       borderTopLeftRadius:20,
       borderTopRightRadius:20,
+      */
       marginTop:10,
       marginBottom:10
     },

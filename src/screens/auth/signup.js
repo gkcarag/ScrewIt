@@ -1,41 +1,56 @@
-import { View, TextInput } from "react-native";
-import { Text, Button } from "react-native-paper";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import styles from "../styles";
+import React, { useState } from 'react';
+import { StyleSheet, Switch, Text, TextInput, View, Button  } from 'react-native';
+import styles from '../styles';
+import { useForm, Controller } from 'react-hook-form';
+import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton';
 
-const signup = (props) => {
-    const {
-        control,
-        handleSubmit, 
-        formState: {errors, isValid}
-    } = useForm();
+const signup = () => {
+
+    const submitPress = data => {
+        console.log(data);
+    }
+
+    const { control, handleSubmit, error } = useForm();
     return(
         <View style={styles.loginScreen}>
-            <Controller
+            <FormInput
+                name="email"
+                placeholder="email"
                 control={control}
-                name="name"
-                render={({field: {onChange, value, onBlur}}) => (
-                    <TextInput
-                        iconName="person"
-                        iconType="MaterialIcons"
-                        placeholder="Enter your name here"
-                        value={value}
-                        onBlur={onBlur}
-                        onChangeText={value => onChange(value)}
-                    />
-                )}
             />
-            <Button title='Submit' /*onPress={handleSubmit(onSubmit)} */ 
+            <FormInput 
+                name="username"
+                placeholder="username"
+                control={control}
             />
-            <Text>
-                sign up screen
-            </Text>
-            <Button onPress={() => props.navigation.goBack()}>
-                Go Back
-            </Button>
+            <FormInput
+                name="password"
+                placeholder="password"
+                control={control}
+                secureTextEntry
+            />
+
+            <FormButton 
+                onPress={handleSubmit(submitPress)}
+                text="Submit"
+
+                />
+            
+           
         </View>
     )
-};
+    /*
+  const [isBillingDifferent, setIsBillingDifferent] = useState(false);
+
+  const toggleBilling = () => {
+    setIsBillingDifferent((prev) => !prev);
+  };
+  */
+
+
+}
 
 export default signup;
+
+
