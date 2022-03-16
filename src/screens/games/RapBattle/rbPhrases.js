@@ -16,6 +16,9 @@ const phrases=[
     },
     {   
     "phrase": "A potato flew across the room",
+    },
+    {
+    "phrase": "Being a Coder at CSUB"
     }
 ]
 export default phrases
