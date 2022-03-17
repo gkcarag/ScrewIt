@@ -1,11 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
 
 //gonna need props for navigation to other pages
 const gameLibrary = (props) => {
     return(
         <View style={styles.container}>
+        <Image style={styles.img} source={require('../pictures/SILibrary.png')}></Image>
         <StatusBar style="auto" />
         <TouchableHighlight onPress={() => props.navigation.navigate("rapbattle")}>
           <View style={styles.icon1}>
@@ -17,16 +18,6 @@ const gameLibrary = (props) => {
         <TouchableHighlight onPress={() => { alert('Pressed button')}}>
           <View style={styles.icon2}></View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon2}></View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon1}></View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon1}></View>
-        </TouchableHighlight>
-        
       </View>
     );
   }
@@ -75,6 +66,10 @@ const gameLibrary = (props) => {
     },
     opacity: {
       height: 150
+    },
+    img: {
+      alignContent: 'center',
+      marginBottom: 10
     }
 });
 
