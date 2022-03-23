@@ -4,12 +4,12 @@ const express = require('express');
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
-//const chatPORT = 3000;  //<-- original before test changes 
+const chatPORT = 3001;  //<-- original before test changes 
 
 // testing database connectivity
 
 const PORT = process.env.PORT || 3000;
-/*
+
 const pool = require("./db");
 const cors = require("cors"); //cross-origins resource sharing, need to npm install
 app.use(cors());
@@ -24,11 +24,11 @@ console.log(__dirname);
 console.log(path.join(__dirname, "../server"));
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+    console.log(`Database Server is running on port: ${PORT}`);
 });
-*/
 
-// chat code, currently not functioning because of database code?
+
+// chat code **USES PORT 3001
 
 io.on("connection", socket =>{
     console.log("a user connected");
@@ -38,7 +38,7 @@ io.on("connection", socket =>{
     })
 });  
 
-server.listen(PORT, () => console.log("chat server running on port: " + PORT));
+server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
 
 
 // database stuff
