@@ -1,3 +1,4 @@
+/*
 const express = require("express");
 const http = require("http"); //new <-
 const app = express();
@@ -13,3 +14,4 @@ io.on("connection", socket => {
     });
 });
 server.listen(port, () => console.log("server running on port: " + port));
+*/

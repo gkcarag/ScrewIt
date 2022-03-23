@@ -1,3 +1,4 @@
+/*
 import React, { Component } from "react";
 import { TextInput, StyleSheet, Text, View } from "react-native";
 // Client Things
@@ -50,3 +51,4 @@ const styles = StyleSheet.create({
       backgroundColor: "#F5FCFF"
     }
   });
+  */

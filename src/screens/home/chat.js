@@ -15,7 +15,7 @@ export default class chat extends Component{
 
     //chat app functional between multiple users, but only locally for now
     componentDidMount(){
-        this.socket = io("http://192.168.1.13:3000"); //replace parameter with your own local ip
+        this.socket = io("http://192.168.1.13:3001"); //replace parameter with your own local ip
         this.socket.on("chat message", msg => {
             this.setState({ chatMessages: [...this.state.chatMessages, msg] });
         });
