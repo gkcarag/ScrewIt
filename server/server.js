@@ -4,26 +4,39 @@ const express = require('express');
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
-const port = 3000;
+// const port = 3000;  <-- original before test changes 
 
-//const pgp = require('pg-promise')();
+// testing database connectivity
+const pool = require("./db");
+const cors = require("cors"); //cross-origins resource sharing, need to npm install
+const PORT = process.env.PORT || 3000;
+app.use(cors());
+app.use(express.json()); //*this might be for react.js only
+const path = require("path");
 
-//const cors = require("cors"); //cross-origins resource sharing, need to npm install
+//app.use(express.static(path.join(__dirname, "../server")));
 
-//app.use(cors());
-//app.use(express.json()); //*this might be for react.js only
+if(process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../server")));
+}
 
+console.log(__dirname);
+console.log(path.join(__dirname, "../server"));
+
+/*
 io.on("connection", socket =>{
     console.log("a user connected");
     socket.on("chat message", msg => {
         console.log(msg);
         io.emit("chat message", msg);
     })
+});  */
+
+//server.listen(port, () => console.log("server running on port: " + port));
+
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
-
-server.listen(port, () => console.log("server running on port: " + port));
-
-
 // database stuff
 // **heroku database credentials change periodically! if it doesnt work, info must be updated
 //const db = pgp('') //update this to herkou credentials
