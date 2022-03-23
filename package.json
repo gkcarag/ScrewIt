@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "npm install && npm run build"
   },
   "engines": {
     "node": "14.16.0",
