@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import { StyleSheet, Switch, Text, TextInput, View, Button  } from 'react-native';
+import { View } from 'react-native';
+import { Text, Button } from "react-native-paper";
 import styles from '../styles';
 import { useForm, Controller } from 'react-hook-form';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 // ** edits made by patrick, to test crud requests **
+/*
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("../server/db");
+*/
     
 // middleware
+/*
 app.use(cors());
 app.use(express.json()); //req.body
+*/
 
 // queries
 // add new user
@@ -61,7 +66,7 @@ app.get("/getUser/:username", async(req,res) => {
 */
 // ** end edits **
 
-const signup = () => {
+const signup = (props) => {
 
     const submitPress = data => {
         console.log(data);
@@ -92,7 +97,9 @@ const signup = () => {
                 text="Submit"
 
             />
-            
+            <Button onPress={() => props.navigation.pop(1)}>
+                Back
+            </Button>
            
         </View>
     )

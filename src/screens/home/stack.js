@@ -11,6 +11,7 @@ import chat from './chat';
 import rapUtil from '../games/RapBattle/rapbattle';
 import rapbattle from '../games/RapBattle/rapbattle';
 import test1 from './test1';
+import forgotPassword from '../auth/forgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ function stack() {
                 <Stack.Screen name="loginSelection" component={loginSelection} options={{ headerShown: false}} />
                 <Stack.Screen name="signin" component={signin} options={{ headerShown: false}} />
                 <Stack.Screen name="signup" component={signup} options={{ headerShown: false}} />
+                <Stack.Screen name="forgotPassword" component={forgotPassword} options={{ headerShown: false}} />
                 <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
                 <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
 

@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import { Text, Button } from "react-native-paper";
 import React from "react";
-import styles from "../styles.js";
+import styles from "../styles";
 import { useForm, Controller } from 'react-hook-form';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
-const forgotPassword = () => {
+const forgotPassword = (props) => {
 
     const submitPress = data => {
         console.log(data);
@@ -16,7 +16,7 @@ const forgotPassword = () => {
     return(
         <View style={styles.loginScreen}>
             <Text>
-                forgot password screen
+                Please enter your email and we'll send you an email to reset your password
             </Text>
             <FormInput
                 name="email"
@@ -27,7 +27,7 @@ const forgotPassword = () => {
                 onPress={handleSubmit(submitPress)}
                 text="Submit"
             />
-            <Button onPress={() => props.navigation.navigate("loginSelection")}>
+            <Button onPress={() => props.navigation.pop(1)}>
                 Back
             </Button>
         </View>
