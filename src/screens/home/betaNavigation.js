@@ -29,7 +29,7 @@ const betaNavigation = (props) => {
           <View style={styles.icon1}>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => props.navigation.navigate("test1")}>
+        <TouchableHighlight onPress={() => props.navigation.navigate("chat")}>
           <View style={styles.icon1}>
           <Image style={styles.libIcons} source={require('../pictures/ChatIcon.png')}></Image>
             <Text style={styles.text}>

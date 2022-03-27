@@ -21,7 +21,7 @@ function stack() {
                 <Stack.Screen name="library" component={gameLibrary} options={{ headerShown: false }} />
                 <Stack.Screen name="betaNavigation" component={betaNavigation} options={{ headerShown: false}}/>
                 <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
-                <Stack.Screen name="chat" component={chat} options={{ headerShown: false}} />
+                <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
                 <Stack.Screen name="loginSelection" component={loginSelection} options={{ headerShown: false}} />
                 <Stack.Screen name="signin" component={signin} options={{ headerShown: false}} />
                 <Stack.Screen name="signup" component={signup} options={{ headerShown: false}} />
