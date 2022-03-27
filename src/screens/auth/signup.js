@@ -35,7 +35,7 @@ const signup = () => {
                 onPress={handleSubmit(submitPress)}
                 text="Submit"
 
-                />
+            />
             
            
         </View>
