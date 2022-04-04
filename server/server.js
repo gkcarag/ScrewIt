@@ -16,6 +16,24 @@ app.use(cors());
 app.use(express.json()); //*this might be for react.js only
 const path = require("path");
 
+// routes
+// add new user
+app.post("/register", async (req,res) => {
+    try{
+        const username = req.body.username;
+        const password = req.body.password;
+        const email = req.body.email;
+
+        const newUser = await pool.query(
+            "INSERT INTO user_info (username,email,pword) VALUES ($1,$2,$3)", //RETURNING *", 
+            [username, password, email]
+        );
+        //res.json(newUser.rows[0]);
+    }catch (err) {
+        console.error(err.message);
+    } 
+});
+
 if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../server")));
 }
