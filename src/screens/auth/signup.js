@@ -1,70 +1,11 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { View } from 'react-native';
 import { Text, Button } from "react-native-paper";
 import styles from '../styles';
 import { useForm, Controller } from 'react-hook-form';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-
-// ** edits made by patrick, to test crud requests **
-/*
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const pool = require("../server/db");
-*/
-    
-// middleware
-/*
-app.use(cors());
-app.use(express.json()); //req.body
-*/
-
-// queries
-// add new user
-/*
-app.post("/adduser", async(req,res) => {
-    try {
-        //description is in json format
-        //const { description } = req.body;
-        const newUser = await pool.query(
-            "INSERT INTO USER_INFO (id, username, email, pword) VALUES ($1,$2,$3,$4)",
-            //[description]
-        );
-
-        res.json(newUser.rows[0]);
-        console.log(req.body);
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-
-// select all users
-app.get("/getUsers", async(req,res) => {
-    try{
-        const allUsers = await pool.query("SELECT * FROM USER_INFO");
-        res.json(allUsers.rows);
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-*/
-
-// testing out below command first
-/*
-app.get("/getUser/:username", async(req,res) => {
-    try{
-        const { id } = req.params;
-        const getUser = await pool.query(
-            "SELECT * FROM USER_INFO WHERE username = $1", [username]);
-        res.json(getUser.rows[0]);
-        
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-*/
-// ** end edits **
+import Axios from "axios";
 
 const signup = (props) => {
 
@@ -73,6 +14,44 @@ const signup = (props) => {
     }
 
     const { control, handleSubmit, error } = useForm();
+
+    //request to db
+    const [usernameInput, usernameSet] = useState("");
+    const [passwordInput, passwordSet] = useState("");
+    const [emailInput, emailSet] = useState("");
+    const register = data => {
+        usernameSet(data.username);
+        passwordSet(data.password);
+        emailSet(data.email);
+        try{
+            Axios.post("/register", {
+                username: usernameInput,
+                password: passwordInput,
+                email: emailInput,
+            })
+            console.log(usernameInput);
+            console.log("user added");
+        }
+        catch (err) {
+            console.log("error somewhere");
+        }
+    };
+    /*
+    const onSubmitForm = async data => {
+        console.log(data);
+        //data.preventDefault();
+        try {
+            const body = { description };
+            const response = await fetch("postgres://rqjesgropnqndl:e75f08c832a31da59d0615deaa6a01918a44326f07d2c9bb5e077885770f596b@ec2-54-160-109-68.compute-1.amazonaws.com:5432/d330ceomi8n88b", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json"},
+                body: JSON.stringify(body)
+            });
+            console.log(response);
+        } catch (err){
+            console.error(err.message);
+        }
+    }*/
     return(
         <View style={styles.loginScreen}>
             <FormInput
@@ -93,6 +72,7 @@ const signup = (props) => {
             />
 
             <FormButton 
+               // onPress={handleSubmit(register)}
                 onPress={handleSubmit(submitPress)}
                 text="Submit"
 
