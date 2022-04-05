@@ -1,6 +1,7 @@
 import { SafeAreaView, Dimensions, StyleSheet, View } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
+import io from "socket.io-client";
 
 import Phrases from './rbPhrases';
 export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
@@ -12,9 +13,25 @@ export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('wind
 //}
 export default function rapbattle(){
 
-  const [started, setStarted] = useState(false);
-  const [status, setStatus] = useState(false);
-  const [phrase, setPhrase] = useState();
+
+  const [started, setStarted] = useState(false); // Start Game Bool
+  const [locked, phrLocked] = useState(false);
+  const [phrase, setPhrase] = useState(' ');
+  const [lockPhrase, setLockPhrase] = useState(' ');
+
+  
+
+  const words = [
+    {text: 'A potato flew across the room', key: 1},
+    {text: 'What the dog doin', key: 2},
+    {text: 'Ratiooooooooo', key: 3},
+    {text: 'The pathways', key: 4}
+  ];
+
+  const changeTextValue = () => {
+    const len = words.length;
+    setPhrase(words[Math.floor(Math.random() * len)].text)
+  }
   
   console.log(phrase);
 
@@ -24,30 +41,32 @@ export default function rapbattle(){
     if(!valid){
       return;
     }else{
-      setStatus("Rap Phrase Submitted!")
+      //setStatus("Rap Phrase Submitted!")
     }
   };
+
+  const phraseLOCKED = () => {
+    // Phrase Needs to be locked in before game in started.
+    phrLocked(true);
+    setLockPhrase(phrase);
+  }
 
   const start = () => {
     const pr = (Math.floor(Math.random() * Phrases.length));
     setPhrase(pr);
-    setStarted(true);
+    setStarted(true); // this starts the actual game. 
   }
 
-  if(started){
+  if(started && locked){
     return(
       <View style={styles.contentView}>
       <SafeAreaView>
-          <Text style={styles.subHeader}>YOUR WORD: </Text>
-          <View style={styles.buttonsContainer}>
-            <Button style={styles.gen} onPress = {submitPhrase}>Submit Rap Phrase</Button>
-            <TextInput string={phrase} onChange={(p) => setPhrase(p.target.value)}/>
-          </View>
+          <Text style={styles.subHeader}>Phrase: {lockPhrase} </Text>
+          <TextInput string={phrase} onChange={(p) => setPhrase(p.target.value)}/>
           <Button type="submit">Submit</Button>
           <Button style={styles.goBack} onPress={() => this.props.navigation.goBack()}>
               Go Back
           </Button>
-          {status}
       </SafeAreaView>
       </View>
   )
@@ -55,7 +74,14 @@ export default function rapbattle(){
     return(
       <SafeAreaView>
         <Button type="button" onPress={start}> START GAME</Button>
-        {status}
+        <Text style={styles.subHeader}>Phrase: {phrase} </Text>
+          <View style={styles.buttonsContainer}>
+            <Button style={styles.gen} onPress = {changeTextValue}>Change Phrase</Button>
+            <Button style={styles.gen} onPress = {phraseLOCKED}>Lock Phrase</Button>
+          </View>
+        <Button style={styles.goBack} onPress={() => this.props.navigation.goBack()}>
+              Go Back
+          </Button>
       </SafeAreaView>
     )
   }
