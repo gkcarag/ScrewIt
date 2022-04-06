@@ -4,6 +4,7 @@ import {Component} from 'react';
 window.navigator.userAgent = 'react-native';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Navigator from './src/screens/home/stack';
+import {SafeAreaView} from "react-native";
 
 export default class App extends Component{
   render(){

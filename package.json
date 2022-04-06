@@ -13,6 +13,8 @@
     "npm": "6.14.11"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.3.1",
+    "@react-navigation/material-bottom-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "axios": "^0.26.1",
@@ -33,11 +35,12 @@
     "react-native": "0.64.3",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-linear-gradient": "^2.5.6",
-    "react-native-paper": "^4.10.0",
+    "react-native-paper": "^4.12.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
     "react-native-tailwindcss": "^1.1.11",
     "react-native-track-player": "^2.1.2",
+    "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.0",

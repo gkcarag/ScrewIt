@@ -35,11 +35,11 @@ app.post("/register", async (req,res) => {
 });
 
 if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../server")));
+    app.use(express.static(path.join(__dirname, "../")));
 }
 
 console.log(__dirname);
-console.log(path.join(__dirname, "../server"));
+console.log(path.join(__dirname, "../"));
 
 app.listen(PORT, () => {
     console.log(`Database Server is running on port: ${PORT}`);

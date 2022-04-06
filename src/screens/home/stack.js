@@ -12,15 +12,17 @@ import rapUtil from '../games/RapBattle/rapbattle';
 import rapbattle from '../games/RapBattle/rapbattle';
 import test1 from './test1';
 import forgotPassword from '../auth/forgotPassword';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
+const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function stack() {
-    return ( 
+const stack = () => {
+    return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="loginSelection">
                 <Stack.Screen name="library" component={gameLibrary} options={{ headerShown: false }} />
-                <Stack.Screen name="betaNavigation" component={betaNavigation} options={{ headerShown: false}}/>
+                <Stack.Screen name="betaNavigation" component={TabStack} options={{ headerShown: false}}/>
                 <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
                 <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
                 <Stack.Screen name="loginSelection" component={loginSelection} options={{ headerShown: false}} />
@@ -29,10 +31,15 @@ function stack() {
                 <Stack.Screen name="forgotPassword" component={forgotPassword} options={{ headerShown: false}} />
                 <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
                 <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
-
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
 
+const TabStack = () => (
+    <Tab.Navigator initialRouteName="Apps">
+        <Tab.Screen name="Apps" component={gameLibrary}></Tab.Screen>
+        <Tab.Screen name="Profile" component={profile}></Tab.Screen>
+    </Tab.Navigator>
+)
 export default stack;
