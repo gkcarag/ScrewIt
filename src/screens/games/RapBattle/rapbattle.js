@@ -24,7 +24,7 @@ export default function rapbattle(){
   const words = [
     {text: 'A potato flew across the room', key: 1},
     {text: 'What the dog doin', key: 2},
-    {text: 'Ratiooooooooo', key: 3},
+    {text: 'Ratio', key: 3},
     {text: 'The pathways', key: 4}
   ];
 
