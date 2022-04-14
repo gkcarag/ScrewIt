@@ -18,51 +18,60 @@ const path = require("path");
 
 // routes
 // add new user
-app.post("/register", async (req,res) => {
-    try{
-        const username = req.body.username;
-        const password = req.body.password;
-        const email = req.body.email;
+app.post("/register", async (req, res) => {
+  try {
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
 
-        const newUser = await pool.query(
-            "INSERT INTO user_info (username,email,pword) VALUES ($1,$2,$3)", //RETURNING *", 
-            [username, password, email]
-        );
-        //res.json(newUser.rows[0]);
-    }catch (err) {
-        console.error(err.message);
-    } 
+    const newUser = await pool.query(
+      "INSERT INTO user_info (username,email,pword) VALUES ($1,$2,$3)", //RETURNING *", 
+      [username, password, email]
+    );
+    //res.json(newUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../server")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../server")));
 }
 
 console.log(__dirname);
 console.log(path.join(__dirname, "../server"));
 
 app.listen(PORT, () => {
-    console.log(`Database Server is running on port: ${PORT}`);
+  console.log(`Database Server is running on port: ${PORT}`);
 });
 
 
 // chat code **USES PORT 3001
 
-io.on("connection", socket =>{
-    console.log("a user connected");
-    socket.on("chat message", msg => {
-        console.log(msg);
-        io.emit("chat message", msg);
-    })
-});  
+io.on("connection", socket => {
+  console.log("a user connected");
+  socket.on("chat message", msg => {
+
+    io.emit("chat message", msg);
+    console.log(msg);
+  })
+});
+
 
 server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
 
+joinRoom = (socket, room) => {
+  room.sockets.push(socket);
+  socket.join(room.id, () => {
+    socket.roomId = room.id;
+    console.log(socket.id, "Joined", room.id);
+  })
+};
 
 // database stuff
 // **heroku database credentials change periodically! if it doesnt work, info must be updated
 //const db = pgp('') //update this to herkou credentials
-//db.connect() 
+//db.connect()
 
 //WORKS - had to alter authentication method and flush privileges
 /*

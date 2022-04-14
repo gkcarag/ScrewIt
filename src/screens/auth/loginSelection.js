@@ -46,6 +46,15 @@ const loginSelection = (props) => {
                         Forgot password?
                     </Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.clickText}
+                    title="forgotpassword"
+                    onPress={() => props.navigation.navigate("chat")}
+                >
+                    <Text>
+                        Chat
+                    </Text>
+                </TouchableOpacity>
             </View>
 
         </View>
