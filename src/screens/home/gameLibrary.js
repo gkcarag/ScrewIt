@@ -15,8 +15,12 @@ const gameLibrary = (props) => {
             </Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => { alert('Pressed button')}}>
-          <View style={styles.icon2}></View>
+        <TouchableHighlight onPress={() => { props.navigation.navigate("chat")}}>
+          <View style={styles.icon2}>
+            <Text>
+              Chat
+            </Text>
+          </View>
         </TouchableHighlight>
       </View>
     );

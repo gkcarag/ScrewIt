@@ -30,28 +30,15 @@ const signup = (props) => {
                 email: emailInput,
             })
             console.log(usernameInput);
+            console.log(passwordInput);
+            console.log(emailInput);
             console.log("user added");
         }
         catch (err) {
             console.log("error somewhere");
         }
     };
-    /*
-    const onSubmitForm = async data => {
-        console.log(data);
-        //data.preventDefault();
-        try {
-            const body = { description };
-            const response = await fetch("postgres://rqjesgropnqndl:e75f08c832a31da59d0615deaa6a01918a44326f07d2c9bb5e077885770f596b@ec2-54-160-109-68.compute-1.amazonaws.com:5432/d330ceomi8n88b", {
-                method: "POST",
-                headers: { "Content-Type" : "application/json"},
-                body: JSON.stringify(body)
-            });
-            console.log(response);
-        } catch (err){
-            console.error(err.message);
-        }
-    }*/
+    
     return(
         <View style={styles.loginScreen}>
             <FormInput
@@ -72,8 +59,8 @@ const signup = (props) => {
             />
 
             <FormButton 
-               // onPress={handleSubmit(register)}
-                onPress={handleSubmit(submitPress)}
+                onPress={handleSubmit(register)}
+                //onPress={handleSubmit(submitPress)}
                 text="Submit"
 
             />
@@ -90,8 +77,6 @@ const signup = (props) => {
     setIsBillingDifferent((prev) => !prev);
   };
   */
-
-
 }
 
 export default signup;

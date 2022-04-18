@@ -1,4 +1,4 @@
-import { SafeAreaView, Dimensions, StyleSheet, View } from "react-native";
+import { SafeAreaView, Dimensions, StyleSheet, View, Keyboard } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
 import io from "socket.io-client";
@@ -11,79 +11,36 @@ export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('wind
 //    const index = Math.floor(Math.random() * Phrases.length);
 //    setIndex(index);
 //}
-export default function rapbattle(){
+export default class rapbattle extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      phrase: Phrases[0].phrase
+    };
+}
 
-
-  const [started, setStarted] = useState(false); // Start Game Bool
-  const [locked, phrLocked] = useState(false);
-  const [phrase, setPhrase] = useState(' ');
-  const [lockPhrase, setLockPhrase] = useState(' ');
-
-  
-
-  const words = [
-    {text: 'A potato flew across the room', key: 1},
-    {text: 'What the dog doin', key: 2},
-    {text: 'Ratiooooooooo', key: 3},
-    {text: 'The pathways', key: 4}
-  ];
-
-  const changeTextValue = () => {
-    const len = words.length;
-    setPhrase(words[Math.floor(Math.random() * len)].text)
-  }
-  
-  console.log(phrase);
-
-  const submitPhrase = (p) => {
-    p.preventDefault();
-    const valid = phrase != null;
-    if(!valid){
-      return;
-    }else{
-      //setStatus("Rap Phrase Submitted!")
-    }
-  };
-
-  const phraseLOCKED = () => {
-    // Phrase Needs to be locked in before game in started.
-    phrLocked(true);
-    setLockPhrase(phrase);
+  randomPhrase(){
+    const rand = Math.floor(Math.random() * Phrases.length);
+    return Phrases[rand];
   }
 
-  const start = () => {
-    const pr = (Math.floor(Math.random() * Phrases.length));
-    setPhrase(pr);
-    setStarted(true); // this starts the actual game. 
+  newPhrase = () => {
+    const genRandPhrase = this.randomPhrase();
+    this.setState({
+      phrase: genRandPhrase.phrase
+    });
   }
 
-  if(started && locked){
-    return(
-      <View style={styles.contentView}>
-      <SafeAreaView>
-          <Text style={styles.subHeader}>Phrase: {lockPhrase} </Text>
-          <TextInput string={phrase} onChange={(p) => setPhrase(p.target.value)}/>
-          <Button type="submit">Submit</Button>
-          <Button style={styles.goBack} onPress={() => this.props.navigation.goBack()}>
-              Go Back
-          </Button>
-      </SafeAreaView>
-      </View>
-  )
-  }else{
+  render(){
     return(
       <SafeAreaView>
-        <Button type="button" onPress={start}> START GAME</Button>
-        <Text style={styles.subHeader}>Phrase: {phrase} </Text>
-          <View style={styles.buttonsContainer}>
-            <Button style={styles.gen} onPress = {changeTextValue}>Change Phrase</Button>
-            <Button style={styles.gen} onPress = {phraseLOCKED}>Lock Phrase</Button>
-          </View>
-        <Button style={styles.goBack} onPress={() => this.props.navigation.goBack()}>
-              Go Back
-          </Button>
+        <Text style={styles.subHeader}>Hello {this.phrase}</Text>
+        <Button style={styles.gen} onPress = {this.newPhrase}> New Phrase </Button>
+        <Button onPress={() => this.props.navigation.goBack()}>
+          Go Back
+        </Button>
       </SafeAreaView>
-    )
+    );
   }
 }
 

@@ -1,5 +1,5 @@
-/node_modules
-server/.env
+#/node_modules
+#server/.env
 node_modules/
 .expo/
 dist/
