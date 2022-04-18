@@ -50,17 +50,25 @@ app.listen(PORT, () => {
 
 io.on("connection", socket => {
   console.log("a user connected");
-  socket.on("chat message", msg => {
 
-    io.emit("chat message", msg);
+  socket.on("chat message", msg => {
+    //io.emit("chat message", msg);
     console.log(msg);
+    //console.log(id);
   })
+
+  socket.on("joinRoom", (roomId, callback) => {
+    const room = rooms[roomId];
+    joinRoom(socket, room);
+  })
+
 });
 
 
 server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
 
-joinRoom = (socket, room) => {
+
+const joinRoom = (socket, room) => {
   room.sockets.push(socket);
   socket.join(room.id, () => {
     socket.roomId = room.id;
