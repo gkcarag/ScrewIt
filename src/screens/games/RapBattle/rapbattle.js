@@ -82,7 +82,7 @@ submitVerse(){
           Go Back
         </Button>
       {phrasesArray}
-      {phrasesArray[0]}/*fdsf*/
+      {phrasesArray[0]}
       </SafeAreaView>
     );
   }
