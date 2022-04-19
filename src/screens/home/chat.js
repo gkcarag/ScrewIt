@@ -11,9 +11,9 @@ export default class chat extends Component{
         super(props);
         this.state = {
             chatMessage: "",
-            chatMessages: []
-        }
-        
+            chatMessages: [],
+            roomName: ""
+        } 
     }
 
     //chat app functional between multiple users, but only locally for now
@@ -25,13 +25,13 @@ export default class chat extends Component{
     }
 
     submitChatMessage(){
-        this.socket.emit("chat message", this.state.chatMessage, this.socket.id);
+        this.socket.emit("chat message", this.state.chatMessage);
         this.setState({chatMessage: ""});
         
     }
 
-    joinRoom(){
-        this.socket.emit("joinRoom");
+    createRoom(){
+        this.socket.emit("createRoom", this.state.roomName);
     }
 
     render(){
@@ -55,6 +55,19 @@ export default class chat extends Component{
                 </Button>
                 <Button onPress={() => this.props.navigation.goBack()}>
                     nothing button
+                </Button>
+                <TextInput
+                    style={{height:40, borderWidth: 2}}
+                    autoCorrect ={false}
+                    value={this.state.roomName}
+                    onSubmitEditing={() => this.createRoom()}
+                    onChangeText={roomName => {
+                        this.setState({ roomName });
+                    }}
+                />
+
+                <Button onPress={() => this.createRoom()}>
+                    create room
                 </Button>
                 {chatMessages}
             </SafeAreaView>

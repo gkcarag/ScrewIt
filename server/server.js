@@ -15,6 +15,7 @@ const cors = require("cors"); //cross-origins resource sharing, need to npm inst
 app.use(cors());
 app.use(express.json()); //*this might be for react.js only
 const path = require("path");
+const { randomUUID } = require('crypto');
 
 // routes
 // add new user
@@ -34,13 +35,8 @@ app.post("/register", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../server")));
-=======
 if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../")));
->>>>>>> c839e07ac17bb7c9daa14a04a6e1e0562eef6067
 }
 
 console.log(__dirname);
@@ -53,19 +49,45 @@ app.listen(PORT, () => {
 
 // chat code **USES PORT 3001
 
-io.on("connection", socket => {
+const rooms = {};
+
+io.on("connection", client => {
   console.log("a user connected");
 
-  socket.on("chat message", msg => {
-    //io.emit("chat message", msg);
+  client.on("chat message", chatMessage);
+  client.on("createRoom", createRoom);
+
+  function chatMessage(msg) {
     console.log(msg);
-    //console.log(id);
+  }
+
+  function createRoom(roomName) {
+    const room = {
+      id: roomName,
+      sockets: []
+    }
+    console.log(room.id);
+
+  }
+
+  /*
+  socket.on("createRoom", clientSocket => {
+    const room = {
+      id: clientSocket.id,
+      sockets: []
+    };
+    rooms[room.id] = room.id;
+    joinRoom(clientSocket, room);
   })
 
   socket.on("joinRoom", (roomId, callback) => {
     const room = rooms[roomId];
     joinRoom(socket, room);
   })
+  */
+
+
+
 
 });
 
@@ -73,6 +95,7 @@ io.on("connection", socket => {
 server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
 
 
+/*
 const joinRoom = (socket, room) => {
   room.sockets.push(socket);
   socket.join(room.id, () => {
@@ -80,6 +103,7 @@ const joinRoom = (socket, room) => {
     console.log(socket.id, "Joined", room.id);
   })
 };
+*/
 
 // database stuff
 // **heroku database credentials change periodically! if it doesnt work, info must be updated
