@@ -54,6 +54,10 @@ io.on("connection", socket =>{
         console.log(msg);
         io.emit("chat message", msg);
     })
+    socket.on("user verse", vrs => {
+        console.log(vrs);
+        io.emit("user verse", vrs);
+    })
 });  
 
 server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
