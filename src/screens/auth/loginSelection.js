@@ -13,7 +13,7 @@ const loginSelection = (props) => {
                 <TouchableOpacity
                     style={styles.button}
                     title="login"
-                    //onPress={() => props.navigation.navigate("")}
+                    onPress={() => props.navigation.navigate("signin")}
                 >
                     <Text>
                         Login

@@ -1,9 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
+import {Auth} from 'aws-amplify';
 
 //gonna need props for navigation to other pages
 const gameLibrary = (props) => {
+  const signOut = () => {
+    Auth.signOut();
+  };
     return(
         <View style={styles.container}>
         <Image style={styles.img} source={require('../pictures/SILibrary.png')}></Image>
@@ -22,6 +26,18 @@ const gameLibrary = (props) => {
             </Text>
           </View>
         </TouchableHighlight>
+        <Text
+          onPress={signOut}
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            color: 'red',
+            marginTop: 'auto',
+            marginVertical: 20,
+            fontSize: 20,
+          }}>
+            Sign out
+        </Text>
       </View>
     );
   }
