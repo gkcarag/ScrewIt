@@ -56,9 +56,11 @@ io.on("connection", client => {
 
   client.on("chat message", chatMessage);
   client.on("createRoom", createRoom);
+  client.on("joinRoom", joinRoom);
 
-  function chatMessage(msg) {
+  function chatMessage(msg, roomName) {
     console.log(msg);
+    io.to(roomName).emit("chat message", msg);
   }
 
   function createRoom(roomName) {
@@ -67,7 +69,13 @@ io.on("connection", client => {
       sockets: []
     }
     console.log(room.id);
+    joinRoom(room.id);
+    
+    io.to(room.id).emit("chat message", room.id);
+  }
 
+  function joinRoom(roomName) {
+    client.join(roomName);
   }
 
   /*

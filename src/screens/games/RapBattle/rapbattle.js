@@ -15,30 +15,74 @@ export default class rapbattle extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      phrase: Phrases[0].phrase
+      phraseInput: "",
+      phrasesArray: []
     };
 }
 
-  randomPhrase(){
-    const rand = Math.floor(Math.random() * Phrases.length);
-    return Phrases[rand];
-  }
+componentDidMount(){
+  this.socket = io("http://192.168.50.179:3001"); //replace parameter with your own local ip
+  this.socket.on("user verse", vrs => {
+      this.setState({ phrasesArray: [...this.state.phrasesArray, vrs] });
+  });
+}
 
-  newPhrase = () => {
-    const genRandPhrase = this.randomPhrase();
-    this.setState({
-      phrase: genRandPhrase.phrase
-    });
-  }
+submitVerse(){
+  this.socket.emit("user verse", this.state.phraseInput);
+  this.setState({phraseInput: ""});
+}
+
+
+    //rand = this.wordList[Math.floor(Math.random() * this.wordList.length)];
+    //return Phrases[rand];
+ 
+
+  //newPhrase = () => {
+  //  const genRandPhrase = this.randomPhrase();
+  //  this.setState({
+  //    phrase: genRandPhrase.phrase
+  //  });
+  //}
+
+  wordList = [
+    'Marcelo',
+    'Lizzette',
+    'Pauline',
+    'Fumiko',
+    'Tomasa',
+    'Bertha',
+    'Antoinette',
+    'Tianna',
+    'Ammie',
+    'Victorina',
+    'Marlon',
+    'Jules',
+    'Arletha',
+    'Ellyn',
+    'Karol',
+    'Corrin',
+    'Josephine',
+  ]
 
   render(){
+    const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
       <SafeAreaView>
-        <Text style={styles.subHeader}>Hello {this.phrase}</Text>
-        <Button style={styles.gen} onPress = {this.newPhrase}> New Phrase </Button>
+        <TextInput
+        placeholder="Enter your Verse!"
+          style={{height:40, borderWidth: 2}}
+          autoCorrect ={false}
+          value={this.state.phraseInput}
+          onSubmitEditing={() => this.submitVerse()}
+          onChangeText={phraseInput => {
+          this.setState({ phraseInput });
+          }}
+        />
         <Button onPress={() => this.props.navigation.goBack()}>
           Go Back
         </Button>
+      {phrasesArray}
+      {phrasesArray[0]}
       </SafeAreaView>
     );
   }
