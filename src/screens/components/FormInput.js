@@ -2,13 +2,16 @@ import React from "react";
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { Controller } from "react-hook-form";
 
-const FormInput = ({ control, name, placeholder, secureTextEntry }) => {
+const FormInput = ({ control, name, rules = {}, placeholder, secureTextEntry }) => {
     return (
-        <View style={styles.container}>
+        //<View style={styles.container}>
             <Controller
                 control={control}
                 name={name}
-                render={({ field: { onChange, onBlur, value } }) => (
+                rules={rules}
+                render={({ field: { onChange, onBlur, value }, fieldState: {error} }) => (
+                    <>
+                    <View style={[styles.container, {borderColor: error ? 'red' : '#e8e8e8'}]}>
                     <TextInput
                         placeholder={placeholder}
                         onBlur={onBlur}
@@ -17,9 +20,14 @@ const FormInput = ({ control, name, placeholder, secureTextEntry }) => {
                         style={styles.input}
                         secureTextEntry={secureTextEntry}
                     />
+                    </View>
+                    {error && (
+                        <Text style={{color: 'red', alignSelf: 'stretch'}}> {error.message || 'Error'} </Text>
+                    )}
+                    </>
                 )}
             />
-        </View>
+       // </View>
     );
 };
 
@@ -31,7 +39,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        marginVertical: 5,
+        marginVertical: 8,
+        height: 28
     },
     input: {},
 
