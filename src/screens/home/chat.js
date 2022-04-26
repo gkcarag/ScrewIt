@@ -4,19 +4,22 @@ import React from "react";
 import { Component } from "react";
 import io from "socket.io-client";
 
+const rooms = {};
+
 export default class chat extends Component{
     constructor(props) {
         super(props);
         this.state = {
             chatMessage: "",
-            chatMessages: []
-        }
+            chatMessages: [],
+            roomName: ""
+        } 
     }
 
     //chat app functional between multiple users, but only locally for now
     componentDidMount(){
-        this.socket = io("http://192.168.1.13:3001"); //replace parameter with your own local ip
-        this.socket.on("chat message", msg => {
+        this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip
+        this.socket.on("chat message", (msg, id) => {
             this.setState({ chatMessages: [...this.state.chatMessages, msg] });
         });
     }
@@ -24,6 +27,11 @@ export default class chat extends Component{
     submitChatMessage(){
         this.socket.emit("chat message", this.state.chatMessage);
         this.setState({chatMessage: ""});
+        
+    }
+
+    createRoom(){
+        this.socket.emit("createRoom", this.state.roomName);
     }
 
     render(){
@@ -47,6 +55,19 @@ export default class chat extends Component{
                 </Button>
                 <Button onPress={() => this.props.navigation.goBack()}>
                     nothing button
+                </Button>
+                <TextInput
+                    style={{height:40, borderWidth: 2}}
+                    autoCorrect ={false}
+                    value={this.state.roomName}
+                    onSubmitEditing={() => this.createRoom()}
+                    onChangeText={roomName => {
+                        this.setState({ roomName });
+                    }}
+                />
+
+                <Button onPress={() => this.createRoom()}>
+                    create room
                 </Button>
                 {chatMessages}
             </SafeAreaView>
