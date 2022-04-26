@@ -73,6 +73,7 @@ const stack = () => {
                     <Stack.Screen name="forgotPassword" component={forgotPassword} options={{ headerShown: false}} />
                     <Stack.Screen name="confirmEmail" component={confirmEmail} options={{ headerShown: false}} />
                     <Stack.Screen name="newPassword" component={newPassword} option={{ headerShown: false}} />
+                    <Stack.Screen name="betaNavigation" component={TabStack} options={{ headerShown: false}}/>
                     </>
                 )}
             </Stack.Navigator>
