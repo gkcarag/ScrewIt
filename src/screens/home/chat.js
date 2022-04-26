@@ -25,13 +25,17 @@ export default class chat extends Component{
     }
 
     submitChatMessage(){
-        this.socket.emit("chat message", this.state.chatMessage);
+        this.socket.emit("chat message", this.state.chatMessage, this.state.roomName);
         this.setState({chatMessage: ""});
         
     }
 
     createRoom(){
         this.socket.emit("createRoom", this.state.roomName);
+    }
+
+    joinRoom(){
+        this.socket.emit("joinRoom", this.state.roomName);
     }
 
     render(){
@@ -56,6 +60,7 @@ export default class chat extends Component{
                 <Button onPress={() => this.props.navigation.goBack()}>
                     nothing button
                 </Button>
+
                 <TextInput
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
@@ -68,6 +73,21 @@ export default class chat extends Component{
 
                 <Button onPress={() => this.createRoom()}>
                     create room
+                </Button>
+
+
+                <TextInput
+                    style={{height:40, borderWidth: 2}}
+                    autoCorrect ={false}
+                    value={this.state.roomName}
+                    onSubmitEditing={() => this.joinRoom()}
+                    onChangeText={roomName => {
+                        this.setState({ roomName });
+                    }}
+                />
+                <Button onPress={() => this.joinRoom()}>
+                    join room 
+
                 </Button>
                 {chatMessages}
             </SafeAreaView>
