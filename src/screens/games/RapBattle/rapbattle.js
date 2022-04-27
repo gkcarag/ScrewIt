@@ -16,7 +16,10 @@ export default class rapbattle extends Component{
     super(props);
     this.state = {
       phraseInput: "",
-      phrasesArray: []
+      phrasesArray: [],
+      rapperID: [],
+      versSTATE: false,
+      gameStart: false,
     };
 }
 
@@ -30,46 +33,22 @@ componentDidMount(){
 submitVerse(){
   this.socket.emit("user verse", this.state.phraseInput);
   this.setState({phraseInput: ""});
+  this.setState({versSTATE: true});
+  this.setState({gameStart: true});
 }
 
-
-    //rand = this.wordList[Math.floor(Math.random() * this.wordList.length)];
-    //return Phrases[rand];
- 
-
-  //newPhrase = () => {
-  //  const genRandPhrase = this.randomPhrase();
-  //  this.setState({
-  //    phrase: genRandPhrase.phrase
-  //  });
-  //}
-
-  wordList = [
-    'Marcelo',
-    'Lizzette',
-    'Pauline',
-    'Fumiko',
-    'Tomasa',
-    'Bertha',
-    'Antoinette',
-    'Tianna',
-    'Ammie',
-    'Victorina',
-    'Marlon',
-    'Jules',
-    'Arletha',
-    'Ellyn',
-    'Karol',
-    'Corrin',
-    'Josephine',
-  ]
-
+getRapper(){
+  const getRapperID = Object.keys(this.rapperID);
+  setRapper = getRapperID[Math.floor(Math.random() * getRapperID.length)];
+}
   render(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
-    return(
-      <SafeAreaView>
-        <TextInput
-        placeholder="Enter your Verse!"
+    if(this.gameStart && this.versSTATE){
+      return(
+        <SafeAreaView>
+          <Text style={styles.subHeader}>Phrase: {phrasesArray[0]} </Text>
+          <TextInput
+          placeholder="Enter your Verse!"
           style={{height:40, borderWidth: 2}}
           autoCorrect ={false}
           value={this.state.phraseInput}
@@ -85,10 +64,30 @@ submitVerse(){
       {phrasesArray[0]}
       </SafeAreaView>
     );
+    }else{
+      return(
+      <SafeAreaView>
+      <Text style={styles.subHeader}> LOBBY </Text>
+      <TextInput
+      placeholder="Enter The Starting Verse!"
+      style={{height:40, borderWidth: 2}}
+      autoCorrect ={true}
+      value={this.state.phraseInput}
+      onChangeText={phraseInput => {
+      this.setState({ phraseInput });
+      }}
+      />
+      <Button onPress={() => this.submitVerse()}>Lock Starting Verse</Button>
+      <Button onPress={() => this.props.navigation.goBack()}>
+        Go Back
+      </Button>
+      {phrasesArray}
+      {phrasesArray[0]}
+      </SafeAreaView>
+      );
+    }
   }
 }
-
-
 const styles = StyleSheet.create({
     contentView: {
       flex: 1,
