@@ -1,4 +1,4 @@
-import { SafeAreaView, Dimensions, StyleSheet, View, Keyboard } from "react-native";
+import { SafeAreaView, Dimensions, StyleSheet, View, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, PlatformColor, Platform} from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
 import io from "socket.io-client";
@@ -67,22 +67,39 @@ submitVerse(){
   render(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
-      <SafeAreaView>
-        <TextInput
-        placeholder="Enter your Verse!"
-          style={{height:40, borderWidth: 2}}
-          autoCorrect ={false}
-          value={this.state.phraseInput}
-          onSubmitEditing={() => this.submitVerse()}
-          onChangeText={phraseInput => {
-          this.setState({ phraseInput });
-          }}
-        />
-        <Button onPress={() => this.props.navigation.goBack()}>
-          Go Back
-        </Button>
-      {phrasesArray}
-      {phrasesArray[0]}
+      <SafeAreaView style={{flex: 1}}>
+        <View
+        style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.8)'}} 
+        alignItems='center'
+        >
+          <Text>
+            INITIAL PHRASE/PREVIOUS PLAYER INPUT HERE testing textoverflow ;sldkjfalskjdf;aklsjdf;alksjdf;alksjdf
+          </Text>
+        </View>
+        <KeyboardAvoidingView 
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{position: 'absolute', bottom: 64, width: '100%'}}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View>
+              <TextInput
+                placeholder="Enter your Verse!"
+                style={{height:40, borderWidth: 2, margin: 16}}
+                autoCorrect ={false}
+                value={this.state.phraseInput}
+                onSubmitEditing={() => this.submitVerse()}
+                onChangeText={phraseInput => {
+                this.setState({ phraseInput });
+                  }}
+              />
+              {phrasesArray}
+              {phrasesArray[0]}
+              <Button onPress={() => this.props.navigation.goBack()}>
+              Go Back
+              </Button>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
