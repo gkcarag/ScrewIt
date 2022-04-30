@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, ImageBackground, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Text, Button } from "react-native-paper";
 import styles from '../styles';
 import { useForm, Controller } from 'react-hook-form';
@@ -37,7 +37,27 @@ const confirmEmail = (props) => {
     }
 
     return(
-        <View style={styles.loginScreen}>
+        <ImageBackground style={styles.loginScreen} source={require('../pictures/intro.png')}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View 
+            style={{
+                flex: 1,
+                padding: 32
+            }}
+            justifyContent='center'
+            width='100%'
+            textAlign='center'
+            alignItems='center'
+        >
+            <Text
+                style={{
+                    fontSize: 32,
+                    fontWeight: 'bold'
+                }}    
+            >
+                Confirm username and confirmation code
+            </Text>
+            <View style={{height: 64}}/>
             <FormInput
                 name="username"
                 placeholder="Username"
@@ -46,6 +66,7 @@ const confirmEmail = (props) => {
                     required: 'Username is required',
                 }}
             />
+            <View style={{height: 8}}/>
             <FormInput
                 name="code"
                 placeholder="Enter confirmation code"
@@ -58,15 +79,22 @@ const confirmEmail = (props) => {
                 onPress={handleSubmit(onSubmit)}
                 text="Submit"
             />
+            <View style={{height: 8}}/>
             <FormButton 
                 onPress={resendCode}
                 text="Resend confirmation code"
+                bgColor={"green"}
             />
-            <Button onPress={() => props.navigation.navigate("loginSelection")}>
+            <View style={{height: 8}}/>
+            <FormButton 
+                onPress={() => props.navigation.navigate("loginSelection")}
+                bgColor={"red"}
+            >
                 Back to Sign In
-            </Button>
-           
+            </FormButton>
         </View>
+        </TouchableWithoutFeedback>
+        </ImageBackground>
     )
 }
 

@@ -130,6 +130,7 @@ const signup = (props) => {
             <View style={{height: 8}}/>
             <FormButton onPress={() => props.navigation.navigate("loginSelection")}
                 text="Back to Sign In"
+                bgColor={"red"}
             >
             </FormButton>
            
