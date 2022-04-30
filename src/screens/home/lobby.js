@@ -43,12 +43,13 @@ export default class lobby extends Component{
         const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}>{chatMessage}</Text>)
         return(
             <ImageBackground style={styles.container} source={require('../pictures/intro.png')}>
-            <SafeAreaView>
+            <SafeAreaView style={{flex: 1, width: '100%'}}>
+                <View style={{padding: 32}}>
                 <Text>
                     testing chat screen
                 </Text>
                 <TextInput
-                    style={{height:40, borderWidth: 2}}
+                    style={{backgroundColor: 'white',height:44, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.chatMessage}
                     onSubmitEditing={() => this.submitChatMessage()}
@@ -56,12 +57,10 @@ export default class lobby extends Component{
                         this.setState({ chatMessage });
                     }}
                 />
-                <Button onPress={() => this.props.navigation.goBack()}>
-                    Go Back
-                </Button>
                 <View style={{height: 16}}/>
                 <TextInput
-                    style={{height:40, borderWidth: 2}}
+                    placeholder="  Enter new Room ID"
+                    style={{backgroundColor: 'white',height:44, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.roomName}
                     onSubmitEditing={() => this.createRoom()}
@@ -69,14 +68,19 @@ export default class lobby extends Component{
                         this.setState({ roomName });
                     }}
                 />
-
-                <Button onPress={() => this.createRoom()}>
-                    create room
+                <View style={{height: 16}}/>
+                <Button 
+                    style={{
+                        backgroundColor: 'lime',
+                    }}
+                    onPress={() => this.createRoom()}
+                >
+                    <Text>Create Room</Text>
                 </Button>
-
-
+                <View style={{height: 32}}/>
                 <TextInput
-                    style={{height:40, borderWidth: 2}}
+                    placeholder="  Enter existing Room ID"
+                    style={{backgroundColor: 'white',height:44, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.roomName}
                     onSubmitEditing={() => this.joinRoom()}
@@ -84,11 +88,25 @@ export default class lobby extends Component{
                         this.setState({ roomName });
                     }}
                 />
-                <Button onPress={() => this.joinRoom()}>
-                    join room 
-
+                <View style={{height: 16}}/>
+                <Button 
+                    style={{
+                        backgroundColor: 'blue',
+                    }}
+                    onPress={() => this.joinRoom()}
+                >
+                <Text style={{color: 'white'}}>
+                    Join Room
+                </Text>
+                </Button>
+                <View style={{height:64}}/>
+                <Button style={{backgroundColor: 'red'}} onPress={() => this.props.navigation.navigate("library")}>
+                    <Text style={{color: 'white'}}>
+                    Go Back
+                    </Text>
                 </Button>
                 {chatMessages}
+                </View>
             </SafeAreaView>
             </ImageBackground>
         );
