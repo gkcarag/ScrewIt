@@ -37,6 +37,8 @@ submitVerse(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
       <ImageBackground style={{flex: 1}} source={require('../../pictures/hiphopWall.jpg')}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{flex: 1}}>
         <View
         style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.8)'}} 
         alignItems='center'
@@ -49,7 +51,6 @@ submitVerse(){
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{position: 'absolute', bottom: 64, width: '100%'}}
         >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View>
               <TextInput
                 placeholder="Enter your Verse!"
@@ -67,8 +68,9 @@ submitVerse(){
               Go Back
               </Button>
             </View>
-          </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
+        </View>
+        </TouchableWithoutFeedback>
       </ImageBackground>
     );
   }
