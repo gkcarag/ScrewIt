@@ -40,7 +40,7 @@ submitVerse(){
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{flex: 1}}>
         <View
-        style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.8)'}} 
+        style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.9)'}} 
         alignItems='center'
         >
           <Text>
