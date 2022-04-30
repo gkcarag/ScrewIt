@@ -13,9 +13,11 @@ const gameLibrary = (props) => {
       <ImageBackground style={styles.container} source={require('../pictures/intro.png')}>
         <StatusBar style="auto" />
         <View>
+        <View style={{paddingTop: 40}}>
         <Text style={styles.title}>
           LIBRARY
           </Text>
+        </View>
         <TouchableHighlight onPress={() => props.navigation.navigate("rapbattle")}>
           <View style={styles.icon1}>
             <Text style={styles.libText}>
