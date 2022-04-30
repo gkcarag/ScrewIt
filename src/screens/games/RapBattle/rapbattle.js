@@ -1,4 +1,4 @@
-import { SafeAreaView, Dimensions, StyleSheet, View, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, PlatformColor, Platform} from "react-native";
+import { ImageBackground, SafeAreaView, Dimensions, StyleSheet, View, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, PlatformColor, Platform} from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
 import io from "socket.io-client";
@@ -16,7 +16,8 @@ export default class rapbattle extends Component{
     super(props);
     this.state = {
       phraseInput: "",
-      phrasesArray: []
+      phrasesArray: [],
+      users: []
     };
 }
 
@@ -32,42 +33,10 @@ submitVerse(){
   this.setState({phraseInput: ""});
 }
 
-
-    //rand = this.wordList[Math.floor(Math.random() * this.wordList.length)];
-    //return Phrases[rand];
- 
-
-  //newPhrase = () => {
-  //  const genRandPhrase = this.randomPhrase();
-  //  this.setState({
-  //    phrase: genRandPhrase.phrase
-  //  });
-  //}
-
-  wordList = [
-    'Marcelo',
-    'Lizzette',
-    'Pauline',
-    'Fumiko',
-    'Tomasa',
-    'Bertha',
-    'Antoinette',
-    'Tianna',
-    'Ammie',
-    'Victorina',
-    'Marlon',
-    'Jules',
-    'Arletha',
-    'Ellyn',
-    'Karol',
-    'Corrin',
-    'Josephine',
-  ]
-
   render(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
-      <SafeAreaView style={{flex: 1}}>
+      <ImageBackground style={{flex: 1}} source={require('../../pictures/hiphopWall.jpg')}>
         <View
         style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.8)'}} 
         alignItems='center'
@@ -100,7 +69,7 @@ submitVerse(){
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </ImageBackground>
     );
   }
 }

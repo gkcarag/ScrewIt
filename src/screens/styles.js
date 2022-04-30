@@ -45,7 +45,7 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     loginContainer: {
-      backgroundColor: "#A7C7E7",
+      backgroundColor: "#77d4b7",
       //flex: 1,
       justifyContent: 'center',
       width: "60%",
@@ -71,5 +71,9 @@ export default StyleSheet.create({
       justifyContent: 'center',
       margin: 5,
       color: 'blue'
-    }
+    },
+    logo: {
+      width: 220,
+      height: 300,
+    },
 });
