@@ -3,6 +3,7 @@ import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
 import io from "socket.io-client";
 import Phrases from './rbPhrases';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
 //const [index, setIndex] = useState();
@@ -35,13 +36,17 @@ submitVerse(){
   render(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
-      <ImageBackground style={{flex: 1}} source={require('../../pictures/hiphopWall.jpg')}>
+      <ImageBackground style={{flex: 1}} source={require('../../pictures/wall2.jpg')}>
+        <Text style={styles.title}>
+        <MaterialCommunityIcons name="microphone-variant" size={50} color="#8eff7a"/>
+          RAP BATTLE !
+          <MaterialCommunityIcons name="microphone-variant" size={50} color="#8eff7a"/>
+        </Text>
+  
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{flex: 1}}>
         <View
-        style={{top: 36, borderWidth: 2, padding: 10, margin: 16, backgroundColor: 'rgba(255, 255, 255, 0.9)'}} 
-        alignItems='center'
-        >
+        style={styles.phraseBox}>
           <Text>
             INITIAL PHRASE/PREVIOUS PLAYER INPUT HERE testing textoverflow ;sldkjfalskjdf;aklsjdf;alksjdf;alksjdf
           </Text>
@@ -52,8 +57,9 @@ submitVerse(){
         >
             <View>
               <TextInput
+                MaterialCommunityIcons = 'microphone-variant'
                 placeholder="Enter your Verse!"
-                style={{height:40, borderWidth: 2, margin: 16}}
+                style={styles.input}
                 autoCorrect ={false}
                 value={this.state.phraseInput}
                 onSubmitEditing={() => this.submitVerse()}
@@ -63,10 +69,7 @@ submitVerse(){
               />
               {phrasesArray}
               {phrasesArray[0]}
-              <Button 
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate("library")}
-              >
+              <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={() => this.props.navigation.navigate("library")}>
                   Back to Library
               </Button>
             </View>
@@ -114,5 +117,44 @@ const styles = StyleSheet.create({
       paddingVertical : 20,
       backgroundColor : "#A94B4B",
       textShadowColor : "white",
+    },
+    phraseBox: {
+      top: 20, 
+      borderWidth: 2, 
+      padding: 10, 
+      margin: 16, 
+      backgroundColor: '#fabef1', 
+      alignItems: 'center',
+      borderBottomLeftRadius:10,
+      borderBottomRightRadius:10,
+      borderTopLeftRadius:10,
+      borderTopRightRadius:10,
+    },
+    btl: {
+      marginTop: 30,
+      marginLeft: 50,
+      marginRight: 50,
+      borderWidth: 2,
+      borderRadius: 20,
+      borderColor: "black", //button background/border color
+      overflow: "hidden",
+      marginBottom: 10,
+      backgroundColor: "#b5b4b3"
+    },
+    input: {
+      borderBottomLeftRadius:10,
+      borderBottomRightRadius:10,
+      borderTopLeftRadius:10,
+      borderTopRightRadius:10,
+      height:40,
+      borderWidth: 2,
+      margin: 16
+    },
+    title: {
+      fontSize: 40,
+      fontWeight: 'bold',
+      marginTop: 40,
+      textAlign: 'center',
+      color: "#caff99",
     }
   });
