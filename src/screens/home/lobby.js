@@ -1,8 +1,9 @@
-import { SafeAreaView, TextInput } from "react-native";
+import { SafeAreaView, TextInput, View, ImageBackground } from "react-native";
 import { Text, Button } from "react-native-paper";
 import React from "react";
 import { Component } from "react";
 import io from "socket.io-client";
+import styles from '../styles';
 
 const rooms = {};
 
@@ -13,7 +14,7 @@ export default class lobby extends Component{
             chatMessage: "",
             chatMessages: [],
             roomName: ""
-        } 
+        }
     }
 
     //chat app functional between multiple users, but only locally for now
@@ -41,6 +42,7 @@ export default class lobby extends Component{
     render(){
         const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}>{chatMessage}</Text>)
         return(
+            <ImageBackground style={styles.container} source={require('../pictures/intro.png')}>
             <SafeAreaView>
                 <Text>
                     testing chat screen
@@ -57,10 +59,7 @@ export default class lobby extends Component{
                 <Button onPress={() => this.props.navigation.goBack()}>
                     Go Back
                 </Button>
-                <Button onPress={() => this.props.navigation.goBack()}>
-                    nothing button
-                </Button>
-
+                <View style={{height: 16}}/>
                 <TextInput
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
@@ -91,6 +90,7 @@ export default class lobby extends Component{
                 </Button>
                 {chatMessages}
             </SafeAreaView>
+            </ImageBackground>
         );
     }
 }

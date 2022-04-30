@@ -25,7 +25,7 @@ const gameLibrary = (props) => {
             </Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => { props.navigation.navigate("Lobby")}}>
+        <TouchableHighlight onPress={() => { props.navigation.navigate("lobby")}}>
           <View style={styles.icon1}>
             <Text style={styles.libText}>
               Create/Join Lobby

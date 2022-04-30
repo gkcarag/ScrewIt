@@ -80,7 +80,7 @@ const stack = () => {
                     <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
                     <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
-                    <Stack.Screen name="Lobby" component={lobby} options={{ headerShown: true}} />
+                    <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />
                     </>
                 )}
             </Stack.Navigator>
