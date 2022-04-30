@@ -19,6 +19,7 @@ import newPassword from '../auth/newPassword';
 import {Auth, Hub} from 'aws-amplify';
 import {View, ActivityIndicator} from 'react-native';
 import rapLobby from '../games/RapBattle/rapLobby';
+import lobby from './lobby';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -81,6 +82,7 @@ const stack = () => {
                     <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
                     <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: true}} />
+                    <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />
                     </>
                 )}
             </Stack.Navigator>

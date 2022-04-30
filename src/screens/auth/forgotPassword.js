@@ -1,4 +1,4 @@
-import { View, Alert } from "react-native";
+import { View, Alert, ImageBackground, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { Text, Button } from "react-native-paper";
 import React from "react";
 import styles from "../styles";
@@ -21,23 +21,46 @@ const forgotPassword = (props) => {
     };
 
     return(
-        <View style={styles.loginScreen}>
-            <Text>
-                Enter your username to send recovery email
+        <ImageBackground style={styles.loginScreen} source={require('../pictures/intro.png')}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View 
+            style={{
+                flex: 1,
+                padding: 32
+            }}
+            justifyContent='center'
+            width='100%'
+            textAlign='center'
+            alignItems='center'
+        >
+            <Text
+                style={{
+                    fontSize: 32,
+                    fontWeight: 'bold'
+                }}    
+            >
+                Enter username to send recovery email
             </Text>
+            <View style={{height: 64}}/>
             <FormInput
                 name="username"
                 placeholder="Username"
                 control={control}
             />
+            <View style={{height: 64}}/>
             <FormButton 
                 onPress={handleSubmit(submitPress)}
                 text="Submit"
             />
-            <Button onPress={() => props.navigation.navigate("loginSelection")}>
-                Back to Sign In
-            </Button>
+            <View style={{height: 8}}/>
+            <FormButton onPress={() => props.navigation.navigate("loginSelection")}
+                text="Back to Sign In"
+                bgColor={"red"}
+            >
+            </FormButton>
         </View>
+        </TouchableWithoutFeedback>
+        </ImageBackground>
     )
 };
 

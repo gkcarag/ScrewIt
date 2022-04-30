@@ -11,9 +11,7 @@ export default class rapLobby extends Component {
         super(props);
         this.state = {
             lobbyCode: ""
-        }
-        
-        
+        } 
     }
 
     componentDidMount() {
@@ -23,6 +21,7 @@ export default class rapLobby extends Component {
     //create user made room with user ID as room name
     createRoom = () => {
         console.log("hi");
+        this.props.navigation.navigate("loginSelection");
 
     }
 
@@ -30,28 +29,27 @@ export default class rapLobby extends Component {
     joinRoom = () => {
         console.log("hi2");
         this.props.navigation.navigate("signin");
-
     }
 
     
 
     render() {
-        
+    
         return(
             <SafeAreaView>
                 <Text>Create Room</Text>
-                <Button onPress={ this.createRoom() }>Create Room</Button>
+                <Button onPress={ this.createRoom }>Create Room</Button>
                 <Text>Join Room</Text>
                 <TextInput
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.chatMessage}
-                    onSubmitEditing={() => this.joinRoom()}
+                    onSubmitEditing={() => this.joinRoom }
                     onChangeText={lobbyCode => {
                         this.setState({ lobbyCode });
                     }}
                 />
-                <Button onPress= { this.joinRoom() }>Join</Button>
+                <Button onPress= { this.joinRoom }>Join</Button>
 
             </SafeAreaView>
 

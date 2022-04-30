@@ -1,4 +1,4 @@
-import { View, SafeAreaView } from "react-native";
+import { View, SafeAreaView, ImageBackground, Image } from "react-native";
 import { Text, Button } from "react-native-paper";
 import React from "react";
 import styles from "../styles.js";
@@ -7,7 +7,8 @@ import { StatusBar } from "expo-status-bar";
 
 const loginSelection = (props) => {
     return (
-        <View style={styles.loginScreen}>
+        <ImageBackground style={styles.loginScreen} source={require('../pictures/intro.png')}>
+            <Image style={styles.logo} source={require('../pictures/ScrewItLogo.png')}></Image>
             <View style={styles.loginContainer}>
                 <StatusBar style="auto" />
                 <TouchableOpacity
@@ -65,7 +66,7 @@ const loginSelection = (props) => {
                 </TouchableOpacity>
             </View>
 
-        </View>
+        </ImageBackground>
     )
 };
 

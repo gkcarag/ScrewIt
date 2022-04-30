@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, ImageBackground, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Text, Button } from "react-native-paper";
 import styles from '../styles';
 import { useForm, Controller } from 'react-hook-form';
@@ -28,7 +28,27 @@ const signin = (props) => {
     const pword = watch('Password');
     //request to db
     return(
-        <View style={styles.loginScreen}>
+        <ImageBackground style={styles.loginScreen} source={require('../pictures/intro.png')}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View 
+            style={{
+                flex: 1,
+                padding: 32,
+            }} 
+            justifyContent='center' 
+            width='100%'
+            textAlign='center'
+            alignItems='center'
+        >
+            <Text
+                style={{
+                    fontSize: 32,
+                    fontWeight: 'bold'
+                }}    
+            >
+                Sign In
+            </Text>
+            <View style={{height: 64}}/>
             <FormInput 
                 name="Username"
                 placeholder="Username"
@@ -37,6 +57,7 @@ const signin = (props) => {
                     required: 'Username is required', 
                 }}
             />
+            <View style={{height: 8}}/>
             <FormInput
                 name="Password"
                 placeholder="Password"
@@ -46,16 +67,23 @@ const signin = (props) => {
                 }}
                 secureTextEntry
             />
+            <View style={{height: 64}}/>
             <FormButton 
                 text={loading ? "Logging in..." : "Login"}
                 onPress={handleSubmit(submitPress)}
 
             />
-            <Button onPress={() => props.navigation.pop(1)}>
-                Back
-            </Button>
+            <View style={{height: 12}}/>
+            <FormButton 
+                onPress={() => props.navigation.navigate("loginSelection")}
+                text={"Back"}
+                bgColor={"red"}
+                >
+            </FormButton>
            
         </View>
+        </TouchableWithoutFeedback>
+        </ImageBackground>
     )
     /*
   const [isBillingDifferent, setIsBillingDifferent] = useState(false);

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, ImageBackground, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Text, Button } from "react-native-paper";
 import styles from '../styles';
 import { useForm, Controller } from 'react-hook-form';
@@ -60,7 +60,27 @@ const signup = (props) => {
         }
     }
     return(
-        <View style={styles.loginScreen}>
+        <ImageBackground style={styles.loginScreen} source={require('../pictures/intro.png')}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View 
+            style={{
+                flex: 1,
+                padding: 32
+            }}
+            justifyContent='center'
+            width='100%'
+            textAlign='center'
+            alignItems='center'
+        >
+            <Text
+                style={{
+                    fontSize: 32,
+                    fontWeight: 'bold'
+                }}    
+            >
+                Create new account
+            </Text>
+            <View style={{height: 64}}/>
             <FormInput
                 name="email"
                 placeholder="Email"
@@ -70,6 +90,7 @@ const signup = (props) => {
                     pattern: {value: email_reg, message: 'Invalid email'},
                 }}
             />
+            <View style={{height: 8}}/>
             <FormInput 
                 name="username"
                 placeholder="Username"
@@ -80,6 +101,7 @@ const signup = (props) => {
                     maxLength: {value:12, message: 'Username cannot exceed 12 characters'},
                 }}
             />
+            <View style={{height: 8}}/>
             <FormInput
                 name="password"
                 placeholder="Password"
@@ -87,7 +109,7 @@ const signup = (props) => {
                 rules={{required: 'Password is required', minLength: {value:4, message: 'Password must be at least 4 characters'}}}
                 secureTextEntry
             />
-            
+            <View style={{height: 8}}/>
             <FormInput
                 name="Confirm-Password"
                 control={control}
@@ -98,18 +120,23 @@ const signup = (props) => {
                     validate: value => value === pword || 'Passwords do not match',
                 }}
             />
-            
+            <View style={{height: 32}}/>
             <FormButton 
                 //onPress={handleSubmit(register)}
                 onPress={handleSubmit(submitPress)}
                 text="Submit"
 
             />
-            <Button onPress={() => props.navigation.navigate("signin")}>
-                Back to Sign In
-            </Button>
+            <View style={{height: 8}}/>
+            <FormButton onPress={() => props.navigation.navigate("loginSelection")}
+                text="Back to Sign In"
+                bgColor={"red"}
+            >
+            </FormButton>
            
         </View>
+        </TouchableWithoutFeedback>
+        </ImageBackground>
     )
     /*
   const [isBillingDifferent, setIsBillingDifferent] = useState(false);
