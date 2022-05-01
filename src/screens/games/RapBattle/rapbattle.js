@@ -19,7 +19,7 @@ export default class rapbattle extends Component {
       phrasesArray: [],
       users: [],
       somenum: 0,
-      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me", "I see no changes"]
+      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me","I see no changes","Rent a supercar for a day", "That's alot for a day, but just enough for a week"]
     };
   }
 
@@ -40,12 +40,12 @@ export default class rapbattle extends Component {
     this.setState({ phraseInput: "" });
   }
 
-  randomizer = () => {
-    let randomNum = Math.floor(Math.random() * 3) + 0;
-    this.setState({
-      somenum: randomNum
-    })
-  }
+randomizer = () => {
+  let randomNum = Math.floor(Math.random() * 5) + 0;
+  this.setState({
+    somenum : randomNum
+  })
+}
 
   render() {
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
@@ -56,33 +56,33 @@ export default class rapbattle extends Component {
           RAP BATTLE !
           <MaterialCommunityIcons name="microphone-variant" size={50} color="#8eff7a" />
         </Text>
-
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={{ flex: 1 }}>
-            <View
-              style={styles.phraseBox}>
-              <View>
-                <Text>
-                  {this.state.defaultPhrases[this.state.somenum]}
-                </Text>
-                {phrasesArray}
-              </View>
-
-            </View>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === "ios" ? "padding" : "height"}
-              style={{ position: 'absolute', bottom: 64, width: '100%' }}
-            >
-              <View>
-                <TextInput
-                  MaterialCommunityIcons='microphone-variant'
-                  placeholder="Enter your Verse!"
-                  style={styles.input}
-                  autoCorrect={false}
-                  value={this.state.phraseInput}
-                  onSubmitEditing={this.submitVerse}
-                  onChangeText={phraseInput => {
-                    this.setState({ phraseInput });
+  
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{flex: 1}}>
+        <View
+        style={styles.phraseBox}>
+          <View style={{alignItems: 'center'}}>
+            <Text>
+            {this.state.defaultPhrases[this.state.somenum]}
+            </Text>
+            {phrasesArray}
+          </View>
+          
+        </View>
+        <KeyboardAvoidingView 
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{position: 'absolute', bottom: 64, width: '100%'}}
+        >
+            <View>
+              <TextInput
+                MaterialCommunityIcons = 'microphone-variant'
+                placeholder="Enter your Verse!"
+                style={styles.input}
+                autoCorrect ={false}
+                value={this.state.phraseInput}
+                onSubmitEditing={ this.submitVerse }
+                onChangeText={phraseInput => {
+                this.setState({ phraseInput });
                   }}
                 />
                 <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={this.randomizer}>

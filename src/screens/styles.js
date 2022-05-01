@@ -144,5 +144,14 @@ export default StyleSheet.create({
     psswrd: {
       color: '#fc3564',
       fontWeight: 'bold'
+    },
+    plogo: {
+      width: 200,
+      height: 200,
+      marginBottom: '50%'
+    },
+    csoon: {
+      borderColor: 'grey',
+      paddingHorizontal: "100%"
     }
 });
