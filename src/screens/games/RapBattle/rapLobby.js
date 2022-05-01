@@ -1,9 +1,11 @@
-import { SafeAreaView, Modal, View, Alert, StyleSheet, Pressable } from "react-native";
+import { SafeAreaView, Modal, View, Alert, StyleSheet, Pressable, ImageBackground } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React from "react";
 import { Component } from "react";
 import io from "socket.io-client";
 import styles from "../../styles";
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 
 
@@ -51,22 +53,20 @@ export default class rapLobby extends Component {
         const { modalCreateVisible } = this.state;
         const { modalJoinVisible } = this.state;
         return(
-            <SafeAreaView>
-                
+            <ImageBackground style={{flex: 1}} source={require('../../pictures/intro.png')}>
+            <Text style={styles.title}>
+                LOBBY
+            </Text>
                 <Modal
                     animationType="slide"
                     visible={ modalCreateVisible }
                 >
-                    <View style={styles.centered}>
+                    <ImageBackground style={{flex: 1}} source={require('../../pictures/intro.png')}>
                         <View style={styles.modalView}>
-                            <Button style={[styles.button, styles.buttonOpen]}
-                                onPress={ this.setModalCreateVisible }
-                            >
-                                <Text>Back</Text>
-                            </Button>
-                            <Text>Create Room</Text>
+
+                            <Text style={styles.stanText}>ENTER ROOM NAME</Text>
                             <TextInput
-                                style={{height:10, borderWidth: 2}}
+                                style={styles.input}
                                 autoCorrect ={false}
                                 value={this.state.roomName}
                                 onSubmitEditing={() => this.createRoom }
@@ -74,13 +74,18 @@ export default class rapLobby extends Component {
                                     this.setState({ roomName });
                                 }}
                             />
-                            <Button onPress= { this.createRoom }>
+                            <Button style={styles.button} onPress= { this.createRoom }>
                                 <Text>
                                     Create Room
                                 </Text>
                             </Button>
+                            <Button style={[styles.button, styles.buttonOpen]}
+                                onPress={ this.setModalCreateVisible }
+                            >
+                                <Text>Back</Text>
+                            </Button>
                         </View>
-                    </View>
+                    </ImageBackground>
                 </Modal>
 
 
@@ -89,16 +94,12 @@ export default class rapLobby extends Component {
                     animationType="slide"
                     visible={ modalJoinVisible }
                 >
-                    <View style={styles.centered}>
+                    <ImageBackground style={{flex: 1}} source={require('../../pictures/intro.png')}>
                         <View style={styles.modalView}>
-                            <Button style={[styles.button, styles.buttonOpen]}
-                                onPress={ this.setModalJoinVisible }
-                            >
-                                <Text>Back</Text>
-                            </Button>
-                            <Text>Join Room</Text>
+
+                            <Text style={styles.stanText}>JOIN ROOM</Text>
                             <TextInput
-                                style={{height:10, borderWidth: 2}}
+                                style={styles.input}
                                 autoCorrect ={false}
                                 value={this.state.roomName}
                                 onSubmitEditing={() => this.joinRoom }
@@ -106,24 +107,34 @@ export default class rapLobby extends Component {
                                     this.setState({ roomName });
                                 }}
                             />
-                            <Button onPress= { this.joinRoom }> 
+                            <Button style={styles.button} onPress= { this.joinRoom }> 
                                 <Text>
                                     Join Room
                                 </Text>
                             </Button>
+                            <Button style={[styles.button, styles.buttonOpen]}
+                                onPress={ this.setModalJoinVisible }
+                            >
+                                <Text>Back</Text>
+                            </Button>
                             
                         </View>
-                    </View>
+                    </ImageBackground>
                 </Modal>
 
-                <Button onPress = { this.setModalCreateVisible }>
-                    <Text> Create Room </Text>
+                <Button style={styles.lobbybutton} onPress = { this.setModalCreateVisible }>
+                    <Text style={styles.stanText}> Create Room </Text>
                 </Button>
-                <Button onPress = { this.setModalJoinVisible}>
-                    <Text> Join Room </Text>
+                <Button style={styles.lobbybutton} onPress = { this.setModalJoinVisible}>
+                    <Text style={styles.stanText}> Join Room </Text>
+                </Button>
+                <Button style={[styles.button, styles.buttonOpen]}
+                    onPress={() => this.props.navigation.navigate("loginSelection")}
+                >
+                    <Text>Back</Text>
                 </Button>
 
-            </SafeAreaView>
+            </ImageBackground>
 
         );
     }

@@ -30,24 +30,24 @@ const loginSelection = (props) => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.clickText}
+                    style={styles.button}
                     title="signup"
                     onPress={() => props.navigation.navigate("signup")}
                 >
                     <Text>
-                        Sign up
+                        Sign up!
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.clickText}
+                    style={styles.button}
                     title="forgotpassword"
                     onPress={() => props.navigation.navigate("forgotPassword")}>
-                    <Text>
+                    <Text style={styles.psswrd}>
                         Forgot password?
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.clickText}
+                    style={styles.button}
                     title="forgotpassword"
                     onPress={() => props.navigation.navigate("chat")}
                 >
@@ -56,12 +56,12 @@ const loginSelection = (props) => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.clickText}
+                    style={styles.button}
                     title="rapLobby"
                     onPress={() => props.navigation.navigate("rapLobby")}
                 >
                     <Text>
-                        rap lobby
+                        Lobby
                     </Text>
                 </TouchableOpacity>
             </View>

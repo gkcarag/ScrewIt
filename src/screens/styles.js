@@ -49,9 +49,10 @@ export default StyleSheet.create({
       //flex: 1,
       justifyContent: 'center',
       width: "60%",
-      height: "30%",
+      height: "50%",
       borderWidth: 1,
       borderRadius: 20,
+      marginBottom: 70
     },
     button: {
       alignItems: 'center',
@@ -74,8 +75,9 @@ export default StyleSheet.create({
       color: 'blue'
     },
     logo: {
-      width: 220,
-      height: 300,
+      width: 170,
+      height: 170,
+      marginBottom: 40
     },
     centered: {
         flex: 1,
@@ -85,15 +87,62 @@ export default StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
+        backgroundColor: "#78c6cf",
         borderRadius: 20,
         padding: 35,
         alignItems: "center",
+        marginTop: '50%'
     }, 
     buttonOpen: {
         backgroundColor: "#F194FF"
     },
     buttonClose: {
         backgroundColor: "#2196F3"
+    },
+    lobbybutton: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#78c6cf',
+      padding: 10,
+      borderStyle: 'solid',
+      borderRadius: 20,
+      borderWidth: 1,
+      margin: 10,
+      elevation: 2,
+      marginTop: '30%',
+      borderColor: '#f86dfc'
+    },
+    title: {
+      fontSize: 40,
+      fontWeight: 'bold',
+      marginTop: 40,
+      textAlign: 'center',
+      color: "black",
+    },
+    input: {
+      paddingHorizontal: 12,
+      width: '100%',
+      backgroundColor: '#F0F0F0',
+      borderStyle: 'solid',
+      marginLeft: 5,
+      overflow: 'visible',
+      marginTop: 5,
+      borderWidth: 5,
+      borderColor: 'lightgrey',
+      borderRadius: 0,
+      borderBottomLeftRadius:10,
+      borderBottomRightRadius:10,
+      borderTopLeftRadius:10,
+      borderTopRightRadius:10,
+      borderColor: "#f86dfc",
+    },
+    stanText: {
+      fontSize: 30,
+      fontWeight: '400',
+      color: '#f86dfc',
+    },
+    psswrd: {
+      color: '#fc3564',
+      fontWeight: 'bold'
     }
 });

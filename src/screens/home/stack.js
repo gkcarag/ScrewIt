@@ -81,7 +81,7 @@ const stack = () => {
                     <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
                     <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
-                    <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: true}} />
+                    <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: false}} />
                     <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />
                     </>
                 )}
