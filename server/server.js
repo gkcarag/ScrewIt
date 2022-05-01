@@ -58,18 +58,19 @@ io.on("connection", client => {
   client.on("chat message", chatMessage);
   client.on("createRoom", createRoom);
   client.on("joinRoom", joinRoom);
-  client.on("user verse", testfunc);
+  client.on("submitVerse", outputVerse);
   client.on("socketDisc", () => console.log("user disconnected"));
 
   function chatMessage(msg) {
     console.log(msg);
     //io.to(roomName).emit("chat message", msg);
-    io.emit("chat message",msg)
+    io.emit("chat message", msg)
   }
 
-  function testfunc(msg){
-    io.emit("outputfunc",msg)
+  function outputVerse(msg) {
+    io.emit("outputVerse", msg);
   }
+
   function createRoom(roomName) {
     checkRooms(roomName);
 

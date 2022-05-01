@@ -22,19 +22,21 @@ export default class rapbattle extends Component{
 }
 
 componentDidMount(){
-  this.socket = io("http://192.168.1.13:3001"); //replace parameter with your own local ip
-  this.socket.on("user verse", vrs => {
-      this.setState({ phrasesArray: [...this.state.phrasesArray, vrs] });
-  });
-  this.socket.on("outputfunc",msg=>{
-    this.setState({ phrasesArray: [...this.state.phrasesArray,msg]})
+  this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip
+  
+  this.socket.on("outputVerse", msg => {
+    this.setState({ phrasesArray: [...this.state.phrasesArray, msg] })
   })
 }
 
-submitVerse(){
-  this.socket.emit("user verse", this.state.phraseInput);
+componentWillUnmount(){
+  this.socket.emit("socketDisc")
+  this.socket.disconnect()
+}
+
+submitVerse = () => {
+  this.socket.emit("submitVerse", this.state.phraseInput);
   this.setState({phraseInput: ""});
-  console.log(this.state.phrasesArray[0])
 }
 
   render(){
@@ -52,12 +54,15 @@ submitVerse(){
         <View
         style={styles.phraseBox}>
           <Text>
-            INITIAL PHRASE/PREVIOUS PLAYER INPUT HERE testing textoverflow ;sldkjfalskjdf;aklsjdf;alksjdf;alksjdf
+            INITIAL PHRASE HERE
           </Text>
-        </View>
-        <View>
-          {phrasesArray}
-          {phrasesArray[0]}
+
+          <View>
+            {phrasesArray}
+
+          </View>
+          
+          
         </View>
         <KeyboardAvoidingView 
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -70,7 +75,7 @@ submitVerse(){
                 style={styles.input}
                 autoCorrect ={false}
                 value={this.state.phraseInput}
-                onSubmitEditing={() => this.submitVerse()}
+                onSubmitEditing={ this.submitVerse }
                 onChangeText={phraseInput => {
                 this.setState({ phraseInput });
                   }}
