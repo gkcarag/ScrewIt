@@ -64,18 +64,20 @@ io.on("connection", client => {
   }
 
   function createRoom(roomName) {
+    checkRooms(roomName);
+
     const room = {
       id: roomName,
       sockets: []
     }
-    console.log(room.id);
-    joinRoom(room.id);
+    joinRoom(room);
     
-    io.to(room.id).emit("chat message", room.id);
+    //io.to(room.id).emit("chat message", room.id);
   }
 
-  function joinRoom(roomName) {
-    client.join(roomName);
+  function joinRoom(room) {
+    client.join(room.id);
+    //room.sockets.push()
   }
 
   /*

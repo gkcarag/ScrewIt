@@ -1,4 +1,4 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Modal, View, Alert, StyleSheet, Pressable } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import React from "react";
 import { Component } from "react";
@@ -10,7 +10,9 @@ export default class rapLobby extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lobbyCode: ""
+            lobbyCode: "",
+            roomName: "",
+            modalVisible: false
         } 
     }
 
@@ -18,25 +20,46 @@ export default class rapLobby extends Component {
         this.socket = io("http://192.168.1.249:3001");
     }
 
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible })
+    }
+
     //create user made room with user ID as room name
     createRoom = () => {
-        console.log("hi");
-        this.props.navigation.navigate("loginSelection");
-
+        console.log("Created Room")
+        this.socket.emit("createRoom", this.state.roomName);
+        this.setModalVisible(true);
+        //this.props.navigation.navigate("loginSelection");
     }
 
     //join other user's room through their ID
     joinRoom = () => {
-        console.log("hi2");
-        this.props.navigation.navigate("signin");
+        console.log("Joined Room")
+        this.socket.emit("joinRoom", this.state.roomName);
+        this.setModalVisible(true);
+        //this.props.navigation.navigate("signin");
     }
 
-    
-
     render() {
-    
+        const { modalVisible } = this.state;
         return(
             <SafeAreaView>
+                <Modal
+                    animationType="slide"
+                    visible={ modalVisible }
+                >
+                    <View style={styles.centered}>
+                        <View style={styles.modalView}>
+                            <Pressable style={[styles.button, styles.buttonOpen]}
+                                onPress={() => this.setModalVisible(false)}
+                            >
+                                <Text>Back</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                    
+
+                </Modal>
                 <Text>Create Room</Text>
                 <Button onPress={ this.createRoom }>Create Room</Button>
                 <Text>Join Room</Text>
@@ -57,7 +80,34 @@ export default class rapLobby extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    centered: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+    }, 
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#F194FF"
+    },
+    buttonClose: {
+        backgroundColor: "#2196F3"
+    }
+})
 
+//onRequestClose={() => { }}
 /*
 const raptest = (props) => {
     return(
