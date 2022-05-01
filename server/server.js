@@ -57,12 +57,16 @@ io.on("connection", client => {
   client.on("chat message", chatMessage);
   client.on("createRoom", createRoom);
   client.on("joinRoom", joinRoom);
-
-  function chatMessage(msg, roomName) {
+  client.on("user verse", testfunc);
+  function chatMessage(msg) {
     console.log(msg);
-    io.to(roomName).emit("chat message", msg);
+    //io.to(roomName).emit("chat message", msg);
+    io.emit("chatmsg",msg)
   }
 
+  function testfunc(msg){
+    io.emit("outputfunc",msg)
+  }
   function createRoom(roomName) {
     checkRooms(roomName);
 
