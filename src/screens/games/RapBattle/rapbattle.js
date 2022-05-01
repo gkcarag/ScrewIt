@@ -19,7 +19,7 @@ export default class rapbattle extends Component{
       phrasesArray: [],
       users: [],
       somenum: 0,
-      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me","I see no changes"]
+      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me","I see no changes","Rent a supercar for a day", "That's alot for a day, but just enough for a week"]
     };
 }
 
@@ -42,7 +42,7 @@ submitVerse = () => {
 }
 
 randomizer = () => {
-  let randomNum = Math.floor(Math.random() * 3) + 0;
+  let randomNum = Math.floor(Math.random() * 5) + 0;
   this.setState({
     somenum : randomNum
   })
@@ -62,7 +62,7 @@ randomizer = () => {
         <View style={{flex: 1}}>
         <View
         style={styles.phraseBox}>
-          <View>
+          <View style={{alignItems: 'center'}}>
             <Text>
             {this.state.defaultPhrases[this.state.somenum]}
             </Text>
