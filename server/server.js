@@ -71,14 +71,15 @@ io.on("connection", client => {
     io.emit("outputVerse", msg);
   }
 
-  function createRoom() {
+  function createRoom(user) {
+    console.log("username in createRoom is" + user);
     const RoomID = makeUniqueID();
     const room = {
       id: RoomID,
-      sockets: []
+      users: []
     }
     rooms[room.id] = room;
-    joinRoom(RoomID);
+    joinRoom(user, RoomID);
     //io.to(room.id).emit("chat message", room.id); 
   }
 
@@ -91,14 +92,13 @@ io.on("connection", client => {
     return roomID;
   } 
 
-  function joinRoom(roomID) {
+  function joinRoom(user, roomID) {
     const joinedRoom = rooms[roomID];
-    joinedRoom.sockets.push(client.id)
+    joinedRoom.users.push({
+      "username": user,
+      "id": client.id
+    });
     client.join(roomID);
-    console.log("Showing all connected sockets: ")
-    for(let i = 0; i < joinedRoom.sockets.length; i++) {
-      console.log(joinedRoom.sockets[i]);
-    }
     showRooms();
   }
 
