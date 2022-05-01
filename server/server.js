@@ -57,10 +57,12 @@ io.on("connection", client => {
   client.on("chat message", chatMessage);
   client.on("createRoom", createRoom);
   client.on("joinRoom", joinRoom);
+  client.on("disconnectSocket", () => console.log("user disconnected"));
 
-  function chatMessage(msg, roomName) {
+  function chatMessage(msg) {
     console.log(msg);
-    io.to(roomName).emit("chat message", msg);
+    //io.to(roomName).emit("chat message", msg);
+    io.emit("chat message", msg);
   }
 
   function createRoom(roomName) {
@@ -95,10 +97,6 @@ io.on("connection", client => {
     joinRoom(socket, room);
   })
   */
-
-
-
-
 });
 
 

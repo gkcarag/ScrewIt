@@ -25,10 +25,17 @@ export default class chat extends Component{
         });
     }
 
-    submitChatMessage(){
-        this.socket.emit("chat message", this.state.chatMessage, this.state.roomName);
-        this.setState({chatMessage: ""});
+    /*
+    componentWillUnmount() {
+        //this.socket.emit("disconnectSocket");
+        //socket.disconnect();
         
+    }
+    */
+
+    submitChatMessage(){
+        this.socket.emit("chat message", msg);
+        this.setState({chatMessage: ""}); 
     }
 
     createRoom(){
@@ -50,7 +57,7 @@ export default class chat extends Component{
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.chatMessage}
-                    onSubmitEditing={() => this.submitChatMessage()}
+                    onSubmitEditing={ () => this.submitChatMessage() }
                     onChangeText={chatMessage => {
                         this.setState({ chatMessage });
                     }}
@@ -66,13 +73,13 @@ export default class chat extends Component{
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.roomName}
-                    onSubmitEditing={() => this.createRoom()}
+                    onSubmitEditing={() => this.createRoom }
                     onChangeText={roomName => {
                         this.setState({ roomName });
                     }}
                 />
 
-                <Button onPress={() => this.createRoom()}>
+                <Button onPress={() => this.createRoom }>
                     create room
                 </Button>
 
@@ -81,12 +88,12 @@ export default class chat extends Component{
                     style={{height:40, borderWidth: 2}}
                     autoCorrect ={false}
                     value={this.state.roomName}
-                    onSubmitEditing={() => this.joinRoom()}
+                    onSubmitEditing={() => this.joinRoom }
                     onChangeText={roomName => {
                         this.setState({ roomName });
                     }}
                 />
-                <Button onPress={() => this.joinRoom()}>
+                <Button onPress={() => this.joinRoom }>
                     join room 
 
                 </Button>
