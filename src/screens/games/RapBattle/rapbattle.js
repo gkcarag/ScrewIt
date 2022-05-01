@@ -22,7 +22,7 @@ export default class rapbattle extends Component{
 }
 
 componentDidMount(){
-  this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip
+  this.socket = io("http://192.168.1.13:3001"); //replace parameter with your own local ip
   
   this.socket.on("outputVerse", msg => {
     this.setState({ phrasesArray: [...this.state.phrasesArray, msg] })
@@ -81,7 +81,7 @@ submitVerse = () => {
                   }}
               />
 
-              <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={() => this.props.navigation.navigate("library")}>
+              <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={() => {this.setState({phrasesArray: []});this.props.navigation.navigate("library")}}>
                   Back to Library
               </Button>
             </View>
