@@ -10,9 +10,9 @@ export default class rapLobby extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lobbyCode: "",
             roomName: "",
-            modalVisible: false
+            modalCreateVisible: false,
+            modalJoinVisible: false
         } 
     }
 
@@ -20,59 +20,111 @@ export default class rapLobby extends Component {
         this.socket = io("http://192.168.1.249:3001");
     }
 
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible })
+    setModalCreateVisible = () => {
+        this.setState( prevState => ({
+            modalCreateVisible: !prevState.modalCreateVisible
+        }));
     }
+
+    setModalJoinVisible = () => {
+        this.setState( prevState => ({
+            modalJoinVisible: !prevState.modalJoinVisible
+        }));
+    }
+
 
     //create user made room with user ID as room name
     createRoom = () => {
-        console.log("Created Room")
+        console.log("Created Room");
         this.socket.emit("createRoom", this.state.roomName);
-        this.setModalVisible(true);
+        this.setModalCreateVisible(true);
         //this.props.navigation.navigate("loginSelection");
     }
 
     //join other user's room through their ID
     joinRoom = () => {
-        console.log("Joined Room")
+        console.log("Joined Room");
         this.socket.emit("joinRoom", this.state.roomName);
-        this.setModalVisible(true);
+        this.setModalJoinVisible(true);
         //this.props.navigation.navigate("signin");
     }
 
     render() {
-        const { modalVisible } = this.state;
+        const { modalCreateVisible } = this.state;
+        const { modalJoinVisible } = this.state;
         return(
             <SafeAreaView>
                 <Modal
                     animationType="slide"
-                    visible={ modalVisible }
+                    visible={ modalCreateVisible }
                 >
                     <View style={styles.centered}>
                         <View style={styles.modalView}>
-                            <Pressable style={[styles.button, styles.buttonOpen]}
-                                onPress={() => this.setModalVisible(false)}
+                            <Button style={[styles.button, styles.buttonOpen]}
+                                onPress={ this.setModalCreateVisible }
                             >
                                 <Text>Back</Text>
-                            </Pressable>
+                            </Button>
+                            <Text>Create Room</Text>
+                            <TextInput
+                                style={{height:10, borderWidth: 2}}
+                                autoCorrect ={false}
+                                value={this.state.roomName}
+                                onSubmitEditing={() => this.createRoom }
+                                onChangeText={ roomName => {
+                                    this.setState({ roomName });
+                                }}
+                            />
+                            <Button onPress= { this.createRoom }>
+                                <Text>
+                                    Create Room
+                                </Text>
+                            </Button>
+
+                            
                         </View>
                     </View>
-                    
-
                 </Modal>
-                <Text>Create Room</Text>
-                <Button onPress={ this.createRoom }>Create Room</Button>
-                <Text>Join Room</Text>
-                <TextInput
-                    style={{height:40, borderWidth: 2}}
-                    autoCorrect ={false}
-                    value={this.state.chatMessage}
-                    onSubmitEditing={() => this.joinRoom }
-                    onChangeText={lobbyCode => {
-                        this.setState({ lobbyCode });
-                    }}
-                />
-                <Button onPress= { this.joinRoom }>Join</Button>
+
+
+
+                <Modal
+                    animationType="slide"
+                    visible={ modalJoinVisible }
+                >
+                    <View style={styles.centered}>
+                        <View style={styles.modalView}>
+                            <Button style={[styles.button, styles.buttonOpen]}
+                                onPress={ this.setModalJoinVisible }
+                            >
+                                <Text>Back</Text>
+                            </Button>
+                            <Text>Create Room</Text>
+                            <TextInput
+                                style={{height:10, borderWidth: 2}}
+                                autoCorrect ={false}
+                                value={this.state.roomName}
+                                onSubmitEditing={() => this.joinRoom }
+                                onChangeText={ roomName => {
+                                    this.setState({ roomName });
+                                }}
+                            />
+                            <Button onPress= { this.joinRoom }> 
+                                <Text>
+                                    Join Room
+                                </Text>
+                            </Button>
+                            
+                        </View>
+                    </View>
+                </Modal>
+
+                <Button onPress = { this.setModalCreateVisible }>
+                    <Text> Create Room </Text>
+                </Button>
+                <Button onPress = { this.setModalJoinVisible}>
+                    <Text> Join Room </Text>
+                </Button>
 
             </SafeAreaView>
 
