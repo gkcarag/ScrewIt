@@ -59,7 +59,7 @@ io.on("connection", client => {
   client.on("createRoom", createRoom);
   client.on("joinRoom", joinRoom);
   client.on("submitVerse", outputVerse);
-  client.on("socketDisc", () => console.log("user disconnected"));
+  client.on("socketDisc", socketDisc);
 
   function chatMessage(msg) {
     console.log(msg);
@@ -72,14 +72,12 @@ io.on("connection", client => {
   }
 
   function createRoom(roomName) {
-    checkRooms(roomName);
-
+    //checkRooms(roomName);
     const room = {
       id: roomName,
       sockets: []
     }
     joinRoom(room);
-    
     //io.to(room.id).emit("chat message", room.id);
   }
 
@@ -88,25 +86,9 @@ io.on("connection", client => {
     //room.sockets.push()
   }
 
-  /*
-  socket.on("createRoom", clientSocket => {
-    const room = {
-      id: clientSocket.id,
-      sockets: []
-    };
-    rooms[room.id] = room.id;
-    joinRoom(clientSocket, room);
-  })
-
-  socket.on("joinRoom", (roomId, callback) => {
-    const room = rooms[roomId];
-    joinRoom(socket, room);
-  })
-  */
-
-
-
-
+  function socketDisc() {
+    console.log("user disconnected");
+  }
 });
 
 

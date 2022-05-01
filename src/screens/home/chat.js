@@ -18,14 +18,14 @@ export default class chat extends Component{
     }
 
     //chat app functional between multiple users, but only locally for now
-    componentDidMount(){
+    componentDidMount() {
         this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip
         this.socket.on("chat message", (msg, id) => {
             this.setState({ chatMessages: [...this.state.chatMessages, msg] });
         });
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.socket.emit("socketDisc")
         this.socket.disconnect()
     }
@@ -35,11 +35,11 @@ export default class chat extends Component{
         this.setState({chatMessage: ""}); 
     }
 
-    createRoom(){
+    createRoom = () => {
         this.socket.emit("createRoom", this.state.roomName);
     }
 
-    joinRoom(){
+    joinRoom = () => {
         this.socket.emit("joinRoom", this.state.roomName);
     }
 
@@ -94,6 +94,7 @@ export default class chat extends Component{
                     join room 
 
                 </Button>
+                
                 {chatMessages}
             </SafeAreaView>
         );
