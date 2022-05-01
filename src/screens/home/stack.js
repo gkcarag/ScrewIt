@@ -20,6 +20,7 @@ import {Auth, Hub} from 'aws-amplify';
 import {View, ActivityIndicator} from 'react-native';
 import rapLobby from '../games/RapBattle/rapLobby';
 import lobby from './lobby';
+import rapWait from '../games/RapBattle/rapWait';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -83,6 +84,7 @@ const stack = () => {
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
                     <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: false}} />
                     <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />
+                    <Stack.Screen name="rapWait" component={rapWait} options={{ headerShown: false}} />
                     </>
                 )}
             </Stack.Navigator>
