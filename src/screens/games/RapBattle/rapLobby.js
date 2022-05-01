@@ -3,6 +3,7 @@ import { Text, Button, TextInput } from "react-native-paper";
 import React from "react";
 import { Component } from "react";
 import io from "socket.io-client";
+import styles from "../../styles";
 
 
 
@@ -21,24 +22,22 @@ export default class rapLobby extends Component {
     }
 
     setModalCreateVisible = () => {
-        this.setState( prevState => ({
-            modalCreateVisible: !prevState.modalCreateVisible
-        }));
+        this.setState( prevState => ({ 
+            modalCreateVisible: !prevState.modalCreateVisible })
+        )
     }
 
     setModalJoinVisible = () => {
         this.setState( prevState => ({
-            modalJoinVisible: !prevState.modalJoinVisible
-        }));
+            modalJoinVisible: !prevState.modalJoinVisible})
+        )
     }
-
 
     //create user made room with user ID as room name
     createRoom = () => {
         console.log("Created Room");
         this.socket.emit("createRoom", this.state.roomName);
         this.setModalCreateVisible(true);
-        //this.props.navigation.navigate("loginSelection");
     }
 
     //join other user's room through their ID
@@ -46,7 +45,6 @@ export default class rapLobby extends Component {
         console.log("Joined Room");
         this.socket.emit("joinRoom", this.state.roomName);
         this.setModalJoinVisible(true);
-        //this.props.navigation.navigate("signin");
     }
 
     render() {
@@ -54,6 +52,7 @@ export default class rapLobby extends Component {
         const { modalJoinVisible } = this.state;
         return(
             <SafeAreaView>
+                
                 <Modal
                     animationType="slide"
                     visible={ modalCreateVisible }
@@ -80,8 +79,6 @@ export default class rapLobby extends Component {
                                     Create Room
                                 </Text>
                             </Button>
-
-                            
                         </View>
                     </View>
                 </Modal>
@@ -99,7 +96,7 @@ export default class rapLobby extends Component {
                             >
                                 <Text>Back</Text>
                             </Button>
-                            <Text>Create Room</Text>
+                            <Text>Join Room</Text>
                             <TextInput
                                 style={{height:10, borderWidth: 2}}
                                 autoCorrect ={false}
@@ -132,32 +129,6 @@ export default class rapLobby extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    centered: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 20
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-    }, 
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-    },
-    buttonOpen: {
-        backgroundColor: "#F194FF"
-    },
-    buttonClose: {
-        backgroundColor: "#2196F3"
-    }
-})
 
 //onRequestClose={() => { }}
 /*

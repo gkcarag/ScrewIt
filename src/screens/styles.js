@@ -59,9 +59,10 @@ export default StyleSheet.create({
       backgroundColor: '#ffffff',
       padding: 10,
       borderStyle: 'solid',
+      borderRadius: 20,
       borderWidth: 1,
       margin: 10,
-      borderRadius: 5,
+      elevation: 2
     },
     buttonText: {
       fontSize: 50,
@@ -76,4 +77,23 @@ export default StyleSheet.create({
       width: 220,
       height: 300,
     },
+    centered: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+    }, 
+    buttonOpen: {
+        backgroundColor: "#F194FF"
+    },
+    buttonClose: {
+        backgroundColor: "#2196F3"
+    }
 });
