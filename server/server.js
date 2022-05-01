@@ -71,29 +71,63 @@ io.on("connection", client => {
     io.emit("outputVerse", msg);
   }
 
-  function createRoom(roomName) {
-    //checkRooms(roomName);
+  function createRoom() {
+    const RoomID = makeUniqueID();
     const room = {
-      id: roomName,
+      id: RoomID,
       sockets: []
     }
-    joinRoom(room);
-    //io.to(room.id).emit("chat message", room.id);
+    rooms[room.id] = room;
+    joinRoom(RoomID);
+    //io.to(room.id).emit("chat message", room.id); 
   }
 
-  function joinRoom(room) {
-    client.join(room.id);
-    //room.sockets.push()
+  function makeUniqueID() {
+    var charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var roomID = "";
+    for(let i = 0; i < 5; i++) {
+      roomID += charList.charAt(Math.floor(Math.random() * charList.length));
+    }
+    return roomID;
+  } 
+
+  function joinRoom(roomID) {
+    const joinedRoom = rooms[roomID];
+    joinedRoom.sockets.push(client.id)
+    client.join(roomID);
+    console.log("Showing all connected sockets: ")
+    for(let i = 0; i < joinedRoom.sockets.length; i++) {
+      console.log(joinedRoom.sockets[i]);
+    }
+    showRooms();
   }
 
   function socketDisc() {
     console.log("user disconnected");
+  }
+
+  function showRooms() {
+    console.log("Outputting Rooms: ");
+    for(let x in rooms) {
+      console.log(rooms[x]);
+    }
   }
 });
 
 
 server.listen(chatPORT, () => console.log("Chat server running on port: " + chatPORT));
 
+
+/*
+  function checkRooms(roomName) {
+    for(let i = 0; i < rooms.length; i++) {
+      if(roomName == rooms[i]) {
+        return false;
+      }
+    }
+    return true; 
+  }
+  */
 
 /*
 const joinRoom = (socket, room) => {

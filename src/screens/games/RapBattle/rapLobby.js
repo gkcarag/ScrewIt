@@ -14,14 +14,27 @@ export default class rapLobby extends Component {
         super(props);
         this.state = {
             roomName: "",
+            userName: "",
             modalCreateVisible: false,
-            modalJoinVisible: false
+            modalJoinVisible: false,
+            //roomError: ""
         } 
     }
 
     componentDidMount() {
         this.socket = io("http://192.168.1.249:3001");
+        /*
+        this.socket.on("roomError", () => { 
+            this.setState({ roomError: "Room Name Unavailable" });
+        })
+        console.log( this.state.roomError );
+        */
     }
+
+    componentWillUnmount() {
+        this.socket.emit("socketDisc")
+        this.socket.disconnect()
+      }
 
     setModalCreateVisible = () => {
         this.setState( prevState => ({ 
@@ -31,22 +44,25 @@ export default class rapLobby extends Component {
 
     setModalJoinVisible = () => {
         this.setState( prevState => ({
-            modalJoinVisible: !prevState.modalJoinVisible})
+            modalJoinVisible: !prevState.modalJoinVisible })
         )
     }
 
     //create user made room with user ID as room name
     createRoom = () => {
         console.log("Created Room");
-        this.socket.emit("createRoom", this.state.roomName);
-        this.setModalCreateVisible(true);
+        this.socket.emit("createRoom");
+        if(this.state.roomError == "") {
+            this.setModalCreateVisible;
+        }
+        
     }
 
     //join other user's room through their ID
     joinRoom = () => {
         console.log("Joined Room");
         this.socket.emit("joinRoom", this.state.roomName);
-        this.setModalJoinVisible(true);
+        this.setModalJoinVisible;
     }
 
     render() {
@@ -64,7 +80,7 @@ export default class rapLobby extends Component {
                     <ImageBackground style={{flex: 1}} source={require('../../pictures/intro.png')}>
                         <View style={styles.modalView}>
 
-                            <Text style={styles.stanText}>ENTER ROOM NAME</Text>
+                            <Text style={styles.stanText}>ENTER YOUR NAME</Text>
                             <TextInput
                                 style={styles.input}
                                 autoCorrect ={false}
@@ -74,6 +90,8 @@ export default class rapLobby extends Component {
                                     this.setState({ roomName });
                                 }}
                             />
+                            <Text>
+                            </Text>
                             <Button style={styles.button} onPress= { this.createRoom }>
                                 <Text>
                                     Create Room
@@ -87,8 +105,6 @@ export default class rapLobby extends Component {
                         </View>
                     </ImageBackground>
                 </Modal>
-
-
 
                 <Modal
                     animationType="slide"
@@ -122,12 +138,18 @@ export default class rapLobby extends Component {
                     </ImageBackground>
                 </Modal>
 
-                <Button style={styles.lobbybutton} onPress = { this.setModalCreateVisible }>
+                <Button style={styles.lobbybutton} 
+                    onPress = { this.setModalCreateVisible }
+                >
                     <Text style={styles.stanText}> Create Room </Text>
                 </Button>
-                <Button style={styles.lobbybutton} onPress = { this.setModalJoinVisible}>
+
+                <Button style={styles.lobbybutton} 
+                    onPress = { this.setModalJoinVisible}
+                >
                     <Text style={styles.stanText}> Join Room </Text>
                 </Button>
+
                 <Button style={[styles.button, styles.buttonOpen]}
                     onPress={() => this.props.navigation.navigate("loginSelection")}
                 >
