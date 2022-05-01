@@ -22,15 +22,19 @@ export default class rapbattle extends Component{
 }
 
 componentDidMount(){
-  this.socket = io("http://192.168.50.179:3001"); //replace parameter with your own local ip
+  this.socket = io("http://192.168.1.13:3001"); //replace parameter with your own local ip
   this.socket.on("user verse", vrs => {
       this.setState({ phrasesArray: [...this.state.phrasesArray, vrs] });
   });
+  this.socket.on("outputfunc",msg=>{
+    this.setState({ phrasesArray: [...this.state.phrasesArray,msg]})
+  })
 }
 
 submitVerse(){
   this.socket.emit("user verse", this.state.phraseInput);
   this.setState({phraseInput: ""});
+  console.log(this.state.phrasesArray[0])
 }
 
   render(){
@@ -51,6 +55,10 @@ submitVerse(){
             INITIAL PHRASE/PREVIOUS PLAYER INPUT HERE testing textoverflow ;sldkjfalskjdf;aklsjdf;alksjdf;alksjdf
           </Text>
         </View>
+        <View>
+          {phrasesArray}
+          {phrasesArray[0]}
+        </View>
         <KeyboardAvoidingView 
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{position: 'absolute', bottom: 64, width: '100%'}}
@@ -67,8 +75,7 @@ submitVerse(){
                 this.setState({ phraseInput });
                   }}
               />
-              {phrasesArray}
-              {phrasesArray[0]}
+
               <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={() => this.props.navigation.navigate("library")}>
                   Back to Library
               </Button>

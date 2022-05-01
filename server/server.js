@@ -16,6 +16,7 @@ app.use(cors());
 app.use(express.json()); //*this might be for react.js only
 const path = require("path");
 const { randomUUID } = require('crypto');
+const { ConsoleLogger } = require('@aws-amplify/core');
 
 // routes
 // add new user
@@ -57,14 +58,18 @@ io.on("connection", client => {
   client.on("chat message", chatMessage);
   client.on("createRoom", createRoom);
   client.on("joinRoom", joinRoom);
-  client.on("disconnectSocket", () => console.log("user disconnected"));
+  client.on("user verse", testfunc);
+  client.on("socketDisc", () => console.log("user disconnected"));
 
   function chatMessage(msg) {
     console.log(msg);
     //io.to(roomName).emit("chat message", msg);
-    io.emit("chat message", msg);
+    io.emit("chat message",msg)
   }
 
+  function testfunc(msg){
+    io.emit("outputfunc",msg)
+  }
   function createRoom(roomName) {
     checkRooms(roomName);
 
@@ -97,6 +102,10 @@ io.on("connection", client => {
     joinRoom(socket, room);
   })
   */
+
+
+
+
 });
 
 
