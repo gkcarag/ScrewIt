@@ -17,7 +17,9 @@ export default class rapbattle extends Component{
     this.state = {
       phraseInput: "",
       phrasesArray: [],
-      users: []
+      users: [],
+      somenum: 0,
+      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me","I see no changes"]
     };
 }
 
@@ -39,6 +41,13 @@ submitVerse = () => {
   this.setState({phraseInput: ""});
 }
 
+randomizer = () => {
+  let randomNum = Math.floor(Math.random() * 3) + 0;
+  this.setState({
+    somenum : randomNum
+  })
+}
+
   render(){
     const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
     return(
@@ -53,15 +62,12 @@ submitVerse = () => {
         <View style={{flex: 1}}>
         <View
         style={styles.phraseBox}>
-          <Text>
-            INITIAL PHRASE HERE
-          </Text>
-
           <View>
+            <Text>
+            {this.state.defaultPhrases[this.state.somenum]}
+            </Text>
             {phrasesArray}
-
           </View>
-          
           
         </View>
         <KeyboardAvoidingView 
@@ -80,7 +86,9 @@ submitVerse = () => {
                 this.setState({ phraseInput });
                   }}
               />
-
+              <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={this.randomizer}>
+                  Randomize
+              </Button>
               <Button style={styles.btl}  color= "#ff4d1c" fontWeight='bold' onPress={() => {this.setState({phrasesArray: []});this.props.navigation.navigate("library")}}>
                   Back to Library
               </Button>
