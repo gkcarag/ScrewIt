@@ -16,8 +16,10 @@ export default class rapWait extends Component {
     }
 
     render() {
+
         const { navigation } = this.props;
         const { roomNum }= this.props.route.params;
+        
         return(
             <ImageBackground style={styles.loginScreen} source={require('../../pictures/intro.png')}>
                 <SafeAreaView>
