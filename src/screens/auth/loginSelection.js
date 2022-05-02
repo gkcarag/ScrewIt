@@ -64,6 +64,15 @@ const loginSelection = (props) => {
                         Lobby
                     </Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
+                    title="rapLobby"
+                    onPress={() => props.navigation.navigate("rapWait")}
+                >
+                    <Text>
+                    rapWait
+                    </Text>
+                </TouchableOpacity>
             </View>
 
         </ImageBackground>

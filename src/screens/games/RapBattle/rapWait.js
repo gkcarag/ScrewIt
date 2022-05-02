@@ -6,12 +6,19 @@ import io from "socket.io-client";
 import styles from "../../styles";
 
 export default class rapWait extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            roomID: ' ',
+            userConnected: [],
+        } 
+    }
 
     render() {
         return(
-            <SafeAreaView>
+            <ImageBackground style={styles.loginScreen} source={require('../../pictures/intro.png')}>
 
-            </SafeAreaView>
+            </ImageBackground>
         );
     }
 }
