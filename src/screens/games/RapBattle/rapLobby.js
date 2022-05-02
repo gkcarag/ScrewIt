@@ -7,7 +7,7 @@ import styles from "../../styles";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-export default class rapLobby extends Component {
+export default class rapLobby extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,6 +20,11 @@ export default class rapLobby extends Component {
 
     componentDidMount() {
         this.socket = io("http://192.168.1.249:3001");
+        
+        this.socket.on("updateRoomID", newRoomID => {
+            this.setState({roomName: newRoomID}),
+            console.log("clients new room ID: " + this.state.roomName) 
+        })
     }
 
     componentWillUnmount() {
@@ -42,10 +47,10 @@ export default class rapLobby extends Component {
     //create user made room with user ID as room name
     createRoom = () => {
         console.log("Created Room");
-
-        console.log(this.state.userName)
         this.socket.emit("createRoom", this.state.userName);
         this.setModalCreateVisible;
+
+        this.props.navigation.navigate("rapWait");
     }
 
     //join other user's room through their ID
@@ -57,8 +62,7 @@ export default class rapLobby extends Component {
     }
 
     render() {
-        const {navigate} = this.props.navigation;
-
+        const { navigate } = this.props.navigation;
         const { modalCreateVisible } = this.state;
         const { modalJoinVisible } = this.state;
         return(
@@ -144,7 +148,7 @@ export default class rapLobby extends Component {
                 </Button>
 
                 <Button style={styles.lobbybutton} 
-                    onPress = { () =>{this.setModalJoinVisible; this.props.navigation.navigate("rapWait")}}
+                    onPress = { this.setModalJoinVisible }
                 >
                     <Text style={styles.stanText}> Join Room </Text>
                 </Button>

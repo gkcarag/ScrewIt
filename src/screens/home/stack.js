@@ -9,8 +9,8 @@ import loginSelection from '../auth/loginSelection';
 import signin from '../auth/signin';
 import signup from '../auth/signup';
 import chat from './chat';
-import rapUtil from '../games/RapBattle/rapbattle';
-import rapbattle from '../games/RapBattle/rapbattle';
+import rapUtil from '../games/RapBattle/rapBattle';
+import rapBattle from '../games/RapBattle/rapBattle';
 import test1 from './test1';
 import forgotPassword from '../auth/forgotPassword';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -65,7 +65,9 @@ const stack = () => {
                     <Stack.Screen name="betaNavigation" component={TabStack} options={{ headerShown: false}}/>
                     <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
                     <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
-                    <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
+                    <Stack.Screen name="rapBattle" component={rapBattle} options={{ headerShown: false}} />
+                    <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: false}} />
+                    <Stack.Screen name="rapWait" component={rapWait} options={{ headerShown: false}} />
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
                     </>
                 ): (
@@ -80,7 +82,7 @@ const stack = () => {
                     <Stack.Screen name="betaNavigation" component={TabStack} options={{ headerShown: false}}/>
                     <Stack.Screen name="profile" component={profile} options={{ headerShown: false}} />
                     <Stack.Screen name="chat" component={chat} options={{ headerShown: true}} />
-                    <Stack.Screen name="rapbattle" component={rapbattle} options={{ headerShown: false}} />
+                    <Stack.Screen name="rapBattle" component={rapBattle} options={{ headerShown: false}} />
                     <Stack.Screen name="test1" component={test1} options={{ headerShown: true}} />
                     <Stack.Screen name="rapLobby" component={rapLobby} options={{ headerShown: false}} />
                     <Stack.Screen name="lobby" component={lobby} options={{ headerShown: false}} />

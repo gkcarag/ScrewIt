@@ -17,6 +17,7 @@ app.use(express.json()); //*this might be for react.js only
 const path = require("path");
 const { randomUUID } = require('crypto');
 const { ConsoleLogger } = require('@aws-amplify/core');
+const { a } = require('aws-amplify');
 
 // routes
 // add new user
@@ -60,6 +61,14 @@ io.on("connection", client => {
   client.on("joinRoom", joinRoom);
   client.on("submitVerse", outputVerse);
   client.on("socketDisc", socketDisc);
+  client.on("getRoomName", getID);
+
+  function getID() {
+    const currentRoom = rooms[Object.keys(rooms)[0]];
+    const currRoom = currentRoom[Object.keys(currentRoom)[0]];
+    //const tempRoom = currentRoom[Object.keys(currentRoom)[0]];
+    io.emit("updateID", currRoom);
+  }
 
   function chatMessage(msg) {
     console.log(msg);
@@ -72,11 +81,10 @@ io.on("connection", client => {
   }
 
   function createRoom(user) {
-    console.log("username in createRoom is" + user);
     const RoomID = makeUniqueID();
     const room = {
-      id: RoomID,
-      users: []
+      "id": RoomID,
+      "users": []
     }
     rooms[room.id] = room;
     joinRoom(user, RoomID);
@@ -99,6 +107,8 @@ io.on("connection", client => {
       "id": client.id
     });
     client.join(roomID);
+    console.log("join room new id is: " + roomID);
+    io.emit("updateRoomID", roomID);
     showRooms();
   }
 
@@ -108,9 +118,8 @@ io.on("connection", client => {
 
   function showRooms() {
     console.log("Outputting Rooms: ");
-    for(let x in rooms) {
-      console.log(rooms[x]);
-    }
+    console.log(rooms);
+
   }
 });
 

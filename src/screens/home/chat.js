@@ -44,7 +44,9 @@ export default class chat extends Component{
     }
 
     render(){
-        const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}>{chatMessage}</Text>)
+        const chatMessages = this.state.chatMessages.map( chatMessage => 
+            <Text key={chatMessage}> {chatMessage} </Text>
+        )
         return(
             <SafeAreaView>
                 <Text>

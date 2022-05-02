@@ -11,15 +11,20 @@ export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('wi
 //    const index = Math.floor(Math.random() * Phrases.length);
 //    setIndex(index);
 //}
-export default class rapbattle extends Component {
+export default class rapBattle extends React.Component {
   constructor(props) {
     super(props);
+    console.log("passed data here: " + props);
     this.state = {
       phraseInput: "",
-      phrasesArray: [],
-      users: [],
+      phraseHolder: [],
       somenum: 0,
-      defaultPhrases: ["I'm rap's MVP", "Sometimes your words just hypnotize me","I see no changes","Rent a supercar for a day", "That's alot for a day, but just enough for a week"]
+      defaultPhrases: [
+        "I'm rap's MVP, don't mess with me", 
+        "Sometimes your words just hypnotize me",
+        "I see no changes",
+        "Rent a supercar for a day", 
+        "That's alot for a day, but just enough for a week"],
     };
   }
 
@@ -28,6 +33,9 @@ export default class rapbattle extends Component {
     this.socket.on("outputVerse", msg => {
       this.setState({ phrasesArray: [...this.state.phrasesArray, msg] })
     })
+    console.log("testing: " + this.props)
+    
+    
   }
 
   componentWillUnmount() {
@@ -40,15 +48,16 @@ export default class rapbattle extends Component {
     this.setState({ phraseInput: "" });
   }
 
-randomizer = () => {
-  let randomNum = Math.floor(Math.random() * 5) + 0;
-  this.setState({
-    somenum : randomNum
-  })
-}
+  randomizer = () => {
+    let randomNum = Math.floor(Math.random() * 5) + 0;
+    this.setState({
+      somenum : randomNum
+    })
+  }
 
   render() {
-    const phrasesArray = this.state.phrasesArray.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
+    const phraseHolder = this.state.phraseHolder.map(phraseInput => <Text key={phraseInput}>{phraseInput}</Text>)
+
     return (
       <ImageBackground style={{ flex: 1 }} source={require('../../pictures/wall2.jpg')}>
         <Text style={styles.title}>
@@ -65,7 +74,7 @@ randomizer = () => {
             <Text>
             {this.state.defaultPhrases[this.state.somenum]}
             </Text>
-            {phrasesArray}
+            {phraseHolder}
           </View>
           
         </View>
@@ -88,7 +97,7 @@ randomizer = () => {
                 <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={this.randomizer}>
                   Randomize
                 </Button>
-                <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={() => { this.setState({ phrasesArray: [] }); this.props.navigation.navigate("library") }}>
+                <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={() => { this.setState({ phraseHolder: [] }); this.props.navigation.navigate("library") }}>
                   Back to Library
                 </Button>
               </View>

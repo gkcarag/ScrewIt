@@ -15,17 +15,26 @@ export default class rapWait extends Component {
         } 
     }
 
-    render() {
+    componentDidMount() {
+        this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip 
+        this.socket.emit("getRoomName");
+        this.socket.on("updateID", currentRoom => {
+            this.setState({ roomID: currentRoom })
+        })
+    }
 
-        const { navigation } = this.props;
-        const { roomNum }= this.props.route.params;
-        
+    componentWillUnmount() {
+        this.socket.emit("socketDisc")
+        this.socket.disconnect()
+    }
+
+    render() {
         return(
             <ImageBackground style={styles.loginScreen} source={require('../../pictures/intro.png')}>
                 <SafeAreaView>
                     <View style={{flex: 1, position: 'absolute'}}>
                     <Text>
-                        {roomNum}
+                        {this.state.roomID}
                     </Text>
 
                     <Button>
