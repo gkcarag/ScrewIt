@@ -24,7 +24,7 @@ export default class rapbattle extends Component {
   }
 
   componentDidMount() {
-    this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip 
+    this.socket = io("http://192.168.50.179:3001"); //replace parameter with your own local ip 
     this.socket.on("outputVerse", msg => {
       this.setState({ phrasesArray: [...this.state.phrasesArray, msg] })
     })
@@ -56,6 +56,8 @@ randomizer = () => {
           RAP BATTLE !
           <MaterialCommunityIcons name="microphone-variant" size={50} color="#8eff7a" />
         </Text>
+
+
   
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{flex: 1}}>
@@ -65,27 +67,72 @@ randomizer = () => {
             <Text>
             {this.state.defaultPhrases[this.state.somenum]}
             </Text>
-            {phrasesArray}
           </View>
-          
         </View>
+        <View
+        style={styles.phraseBox}>
+          <View style={{alignItems: 'center'}}>
+            <Text style={styles.welcome}>
+            WELCOME TO RAP BATTLE!
+            </Text>
+            <Text>
+            There are three boxes! Input your Rap Verses Fast enough to mess up your friends Rap Verse!
+            Use the Random Phrase Button to get a new Prompt!
+            </Text>
+            <Text>
+              There is only one thing left to do young MC's....
+            </Text>
+            <Text style={styles.last}>
+              3...2...1.... BATTLE!
+            </Text>
+          </View>
+        </View>
+
+        <View
+        style={styles.vrsBox}>
+          <View style={{alignItems: 'center'}}>
+            {phrasesArray[0]}
+            {phrasesArray[3]}
+            {phrasesArray[6]}
+          </View>
+        </View>
+
+        <View
+        style={styles.vrsBox}>
+          <View style={{alignItems: 'center'}}>
+            {phrasesArray[1]}
+            {phrasesArray[4]}
+            {phrasesArray[7]}
+          </View>
+        </View>
+
+        <View
+        style={styles.vrsBox}>
+          <View style={{alignItems: 'center'}}>
+            {phrasesArray[2]}
+            {phrasesArray[5]}
+            {phrasesArray[8]}
+          </View>
+        </View>
+
+
+        
         <KeyboardAvoidingView 
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{position: 'absolute', bottom: 64, width: '100%'}}
         >
             <View>
               <TextInput
-                MaterialCommunityIcons = 'microphone-variant'
                 placeholder="Enter your Verse!"
                 style={styles.input}
                 autoCorrect ={false}
                 value={this.state.phraseInput}
-                onSubmitEditing={ this.submitVerse }
+                onSubmitEditing={ this.submitVerse}
                 onChangeText={phraseInput => {
                 this.setState({ phraseInput });
                   }}
                 />
-                <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={this.randomizer}>
+                <Button style={styles.btl2} color="#00ccff" fontWeight='bold' onPress={this.randomizer}>
                   Randomize
                 </Button>
                 <Button style={styles.btl} color="#ff4d1c" fontWeight='bold' onPress={() => { this.setState({ phrasesArray: [] }); this.props.navigation.navigate("library") }}>
@@ -175,5 +222,36 @@ const styles = StyleSheet.create({
     marginTop: 40,
     textAlign: 'center',
     color: "#caff99",
+  },
+  vrsBox: {
+    top: 20,
+    borderWidth: 2,
+    padding: 10,
+    //margin: 16,
+    backgroundColor: '#43e8fa',
+    alignItems: 'center',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  btl2: {
+    marginTop: 30,
+    marginLeft: 50,
+    marginRight: 50,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: "black", //button background/border color
+    overflow: "hidden",
+    marginBottom: 10,
+    backgroundColor: "#ffb24d"
+  },
+  welcome: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    alignItems: 'center',
+  },
+  last: {
+    fontWeight: 'bold'
   }
 });
