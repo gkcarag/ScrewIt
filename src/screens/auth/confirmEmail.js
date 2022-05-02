@@ -89,6 +89,7 @@ const confirmEmail = (props) => {
             <FormButton 
                 onPress={() => props.navigation.navigate("loginSelection")}
                 bgColor={"red"}
+                color={"white"}
             >
                 Back to Sign In
             </FormButton>

@@ -7,8 +7,6 @@ import styles from "../../styles";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-
-
 export default class rapLobby extends Component {
     constructor(props) {
         super(props);
@@ -59,6 +57,8 @@ export default class rapLobby extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
+
         const { modalCreateVisible } = this.state;
         const { modalJoinVisible } = this.state;
         return(
@@ -144,7 +144,7 @@ export default class rapLobby extends Component {
                 </Button>
 
                 <Button style={styles.lobbybutton} 
-                    onPress = { this.setModalJoinVisible}
+                    onPress = { () =>{this.setModalJoinVisible; this.props.navigation.navigate("rapWait")}}
                 >
                     <Text style={styles.stanText}> Join Room </Text>
                 </Button>
