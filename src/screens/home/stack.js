@@ -9,7 +9,6 @@ import loginSelection from '../auth/loginSelection';
 import signin from '../auth/signin';
 import signup from '../auth/signup';
 import chat from './chat';
-import rapUtil from '../games/RapBattle/rapBattle';
 import rapBattle from '../games/RapBattle/rapBattle';
 import test1 from './test1';
 import forgotPassword from '../auth/forgotPassword';
