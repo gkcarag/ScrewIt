@@ -10,12 +10,12 @@ ScrewIt! is a mobile party game application for iOS and Android for fun on the g
    />
    <img 
       alt="Register" 
-      src="assets/reg.jpg" 
+      src="assets/reg.JPG" 
       height=500px 
    />
    <img
       alt="Sign In after registration" 
-      src="assets/si.jpg" 
+      src="assets/si.JPG" 
       height=500px
    />
 </p>
@@ -32,7 +32,7 @@ ScrewIt! is a mobile party game application for iOS and Android for fun on the g
    />
     <img 
       alt="Play Rap Battle with your Friends!" 
-      src="assets/rap.jpg" 
+      src="assets/rap.JPG" 
       height=500px 
    />
 </p>
