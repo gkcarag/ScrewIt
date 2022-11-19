@@ -49,7 +49,7 @@ export default StyleSheet.create({
       //flex: 1,
       justifyContent: 'center',
       width: "60%",
-      height: "50%",
+      height: "30%",
       borderWidth: 1,
       borderRadius: 20,
       marginBottom: 70

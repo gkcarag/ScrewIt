@@ -62,6 +62,7 @@ io.on("connection", client => {
   client.on("submitVerse", outputVerse);
   client.on("socketDisc", socketDisc);
   client.on("getRoomName", getID);
+  client.on("destroyRoom", destroyRoom);
 
   function getID() {
     const currentRoom = rooms[Object.keys(rooms)[0]];
@@ -120,6 +121,10 @@ io.on("connection", client => {
     console.log("Outputting Rooms: ");
     console.log(rooms);
 
+  }
+
+  function destroyRoom(roomID) {
+    
   }
 });
 

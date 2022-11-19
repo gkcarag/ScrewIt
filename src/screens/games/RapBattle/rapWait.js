@@ -15,12 +15,16 @@ export default class rapWait extends Component {
         } 
     }
 
+    //test = rapLobby();
+
     componentDidMount() {
         this.socket = io("http://192.168.1.249:3001"); //replace parameter with your own local ip 
         this.socket.emit("getRoomName");
         this.socket.on("updateID", currentRoom => {
             this.setState({ roomID: currentRoom })
         })
+        console.log("created new room");
+        //console.log(this.props);
     }
 
     componentWillUnmount() {

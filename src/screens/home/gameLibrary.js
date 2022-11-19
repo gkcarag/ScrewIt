@@ -13,32 +13,35 @@ const gameLibrary = (props) => {
       <ImageBackground style={styles.container} source={require('../pictures/intro.png')}>
         <StatusBar style="auto" />
         <View>
-        <View style={{paddingTop: 40}}>
-        <Text style={styles.title}>
-          LIBRARY
-          </Text>
-        </View>
-        <TouchableHighlight onPress={() => props.navigation.navigate("rapbattle")}>
-          <View style={styles.icon1}>
-            <Text style={styles.libText}>
-              Rap Battle
+          <View style={{paddingTop: 40}}>
+            <Text style={styles.title}>
+              LIBRARY
             </Text>
           </View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => { props.navigation.navigate("rapLobby")}}>
-          <View style={styles.icon1}>
-            <Text style={styles.libText}>
-              Create/Join Lobby
-            </Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => { props.navigation.navigate("chat")}}>
-          <View style={styles.icon1}>
-          <Text onPress={signOut} style={styles.signOut}>
-            Sign out
-          </Text>
-          </View>
-        </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => props.navigation.navigate("rapbattle")}>
+            <View style={styles.icon1}>
+              <Text style={styles.libText}>
+                Rap Battle
+              </Text>
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => { props.navigation.navigate("rapLobby")}}>
+            <View style={styles.icon1}>
+              <Text style={styles.libText}>
+                Create/Join Lobby
+              </Text>
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => { props.navigation.navigate("chat")}}>
+            <View style={styles.icon1}>
+              <Text onPress={signOut} style={styles.signOut}>
+                Sign out
+              </Text>
+            </View>
+          </TouchableHighlight>
         </View>
       </ImageBackground>
     );

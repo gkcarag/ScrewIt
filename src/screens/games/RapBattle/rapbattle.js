@@ -2,7 +2,6 @@ import { ImageBackground, SafeAreaView, Dimensions, StyleSheet, View, KeyboardAv
 import { Text, Button, TextInput } from "react-native-paper";
 import React, { Component, useState } from "react";
 import io from "socket.io-client";
-import Phrases from './rbPhrases';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 

@@ -1,4 +1,4 @@
-import { View, SafeAreaView, ImageBackground, Image } from "react-native";
+import { View, SafeAreaView, ImageBackground, Image, Pressable } from "react-native";
 import { Text, Button } from "react-native-paper";
 import React from "react";
 import styles from "../styles.js";
@@ -29,24 +29,24 @@ const loginSelection = (props) => {
                         Login as Guest
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.button}
+                <Pressable
+                    style={styles.clickText}
                     title="signup"
                     onPress={() => props.navigation.navigate("signup")}
                 >
                     <Text>
                         Sign up!
                     </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.button}
+                </Pressable>
+                <Pressable
+                    style={styles.clickText}
                     title="forgotpassword"
                     onPress={() => props.navigation.navigate("forgotPassword")}>
                     <Text style={styles.psswrd}>
                         Forgot password?
                     </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                </Pressable>
+                {/* <TouchableOpacity
                     style={styles.button}
                     title="forgotpassword"
                     onPress={() => props.navigation.navigate("chat")}
@@ -72,7 +72,7 @@ const loginSelection = (props) => {
                     <Text>
                     rapWait
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
 
         </ImageBackground>
